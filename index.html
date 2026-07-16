@@ -63,7 +63,7 @@ body{
 .meta b{color:var(--ink);font-weight:600}
 .filters{
   display:grid;
-  grid-template-columns:1.2fr 1.2fr auto;
+  grid-template-columns:1fr 1fr 1fr auto;
   gap:.85rem;
   align-items:end;
   margin:1.4rem 0 0;
@@ -186,7 +186,7 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
     <p class="lede">Dashboard web Revenue AR Invoice Semester 1 2026 — fokus ke Tanggal Invoice, Province, Kabupaten, Product, Revenue, dan PIC Name.</p>
     <div class="meta">
       <span>Sumber: <b>AR Invoice — BD Achive Smt 1</b></span>
-      <span>Filter aktif: <b id="filterLabel">Semua periode · Semua PIC</b></span>
+      <span>Filter aktif: <b id="filterLabel">Semua periode · Semua PIC · Semua Product</b></span>
       <span>Generated: <b>16 Jul 2026</b></span>
     </div>
     <div class="filters">
@@ -197,6 +197,10 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
       <div class="field">
         <label for="fPic">PIC Name</label>
         <select id="fPic"></select>
+      </div>
+      <div class="field">
+        <label for="fProduct">Product</label>
+        <select id="fProduct"></select>
       </div>
       <button type="button" class="btn-reset" id="btnReset">Reset</button>
     </div>
@@ -231,7 +235,7 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
   </section>
 
   <div class="footer">
-    <span>Data row-level dari AR Invoice INV 2026 (Total DPP). Filter periode & PIC Name interaktif.</span>
+    <span>Data row-level dari AR Invoice INV 2026 (Total DPP). Filter periode, PIC Name & Product interaktif.</span>
     <a href="https://docs.google.com/spreadsheets/d/1YPKf9DXiYRZuYu-KjMRTckfwFCtIvTWeeNZA6zXm6E8/edit" target="_blank" rel="noopener">Buka sumber Sheets</a>
   </div>
 </div>
@@ -255,18 +259,23 @@ const rpShort = n => {
 
 const months = [...new Set(ROWS.map(r => r[0]))].sort();
 const pics = [...new Set(ROWS.map(r => r[1]))].sort((a,b)=>a.localeCompare(b,'id'));
+const products = [...new Set(ROWS.map(r => r[2]))].sort((a,b)=>a.localeCompare(b,'id'));
 
 const fPeriod = document.getElementById('fPeriod');
 const fPic = document.getElementById('fPic');
+const fProduct = document.getElementById('fProduct');
 fPeriod.innerHTML = '<option value="">Semua periode (Jan–Jun)</option>' +
   months.map(m => `<option value="${m}">${MONTH_LABEL[m] || m} ${m.slice(0,4)}</option>`).join('');
 fPic.innerHTML = '<option value="">Semua PIC</option>' +
   pics.map(p => `<option value="${p.replace(/"/g,'&quot;')}">${p}</option>`).join('');
+fProduct.innerHTML = '<option value="">Semua Product</option>' +
+  products.map(p => `<option value="${p.replace(/"/g,'&quot;')}">${p}</option>`).join('');
 
 function filtered() {
   const m = fPeriod.value;
   const p = fPic.value;
-  return ROWS.filter(r => (!m || r[0] === m) && (!p || r[1] === p));
+  const prod = fProduct.value;
+  return ROWS.filter(r => (!m || r[0] === m) && (!p || r[1] === p) && (!prod || r[2] === prod));
 }
 
 function agg(rows, keyIdx) {
@@ -369,7 +378,8 @@ function render() {
 
   const pLabel = fPeriod.value ? (MONTH_LABEL[fPeriod.value] || fPeriod.value) + ' 2026' : 'Semua periode';
   const picLabel = fPic.value || 'Semua PIC';
-  document.getElementById('filterLabel').textContent = pLabel + ' · ' + picLabel;
+  const prodLabel = fProduct.value || 'Semua Product';
+  document.getElementById('filterLabel').textContent = pLabel + ' · ' + picLabel + ' · ' + prodLabel;
 
   charts.pic.data.labels = picAgg.map(x=>x[0]);
   charts.pic.data.datasets[0].data = picAgg.map(x=>x[1]);
@@ -400,9 +410,11 @@ function render() {
 
 fPeriod.addEventListener('change', render);
 fPic.addEventListener('change', render);
+fProduct.addEventListener('change', render);
 document.getElementById('btnReset').addEventListener('click', () => {
   fPeriod.value = '';
   fPic.value = '';
+  fProduct.value = '';
   render();
 });
 
