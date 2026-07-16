@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cartenz — BD Achievement Smt 1 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root{
+  --ink:#0f1c24;
+  --muted:#5a6b75;
+  --line:#d5dde3;
+  --paper:#f3f6f8;
+  --card:#ffffff;
+  --accent:#0e7c66;
+  --accent-2:#1a9b7e;
+  --warm:#c45c26;
+  --shadow:0 18px 40px rgba(15,28,36,.08);
+  --radius:18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Outfit,system-ui,sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(14,124,102,.14), transparent 55%),
+    radial-gradient(900px 500px at 100% 0%, rgba(196,92,38,.10), transparent 50%),
+    linear-gradient(180deg, #eef3f5 0%, var(--paper) 40%, #e8eef1 100%);
+  min-height:100vh;
+}
+.wrap{width:min(1180px,calc(100% - 2rem));margin:0 auto;padding:2rem 0 3.5rem}
+.hero{
+  position:relative;
+  padding:2.2rem 0 1.4rem;
+  opacity:0;transform:translateY(14px);
+  animation:rise .7s ease forwards;
+}
+.brand{
+  font-family:"Source Serif 4",Georgia,serif;
+  font-size:clamp(2.4rem,5vw,3.6rem);
+  font-weight:600;
+  letter-spacing:-.02em;
+  line-height:1.05;
+  margin:0 0 .55rem;
+}
+.brand span{color:var(--accent)}
+.lede{
+  max-width:38rem;
+  color:var(--muted);
+  font-size:1.05rem;
+  line-height:1.55;
+  margin:0 0 1.5rem;
+}
+.meta{
+  display:flex;flex-wrap:wrap;gap:.6rem .9rem;
+  color:var(--muted);font-size:.88rem;
+}
+.meta b{color:var(--ink);font-weight:600}
+kpis{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:.85rem;
+  margin:1.6rem 0 2rem;
+}
+.kpi{
+  background:var(--card);
+  border:1px solid rgba(213,221,227,.8);
+  border-radius:var(--radius);
+  padding:1.05rem 1.1rem 1rem;
+  box-shadow:var(--shadow);
+  opacity:0;transform:translateY(16px);
+  animation:rise .65s ease forwards;
+}
+.kpi:nth-child(1){animation-delay:.08s}
+.kpi:nth-child(2){animation-delay:.14s}
+.kpi:nth-child(3){animation-delay:.2s}
+.kpi:nth-child(4){animation-delay:.26s}
+.kpi:nth-child(5){animation-delay:.32s}
+.kpi .label{font-size:.78rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-bottom:.35rem}
+.kpi .value{font-size:clamp(1.15rem,2.4vw,1.55rem);font-weight:700;letter-spacing:-.02em}
+.kpi.primary{
+  background:linear-gradient(145deg,#0e7c66 0%,#146f5f 55%,#0b5a4b 100%);
+  color:#fff;border:none;
+}
+.kpi.primary .label{color:rgba(255,255,255,.78)}
+.grid{
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:1rem;
+  margin-bottom:1rem;
+}
+.panel{
+  background:var(--card);
+  border:1px solid rgba(213,221,227,.85);
+  border-radius:var(--radius);
+  padding:1.15rem 1.2rem 1.1rem;
+  box-shadow:var(--shadow);
+  opacity:0;transform:translateY(18px);
+  animation:rise .7s ease forwards .35s;
+}
+.panel h2{
+  margin:0 0 .85rem;
+  font-size:1rem;
+  font-weight:600;
+}
+.chart-box{position:relative;height:300px}
+.chart-box.tall{height:340px}
+.table-wrap{overflow:auto;max-height:420px}
+table{width:100%;border-collapse:collapse;font-size:.92rem}
+th,td{padding:.55rem .4rem;border-bottom:1px solid var(--line);text-align:left}
+th{position:sticky;top:0;background:#fff;color:var(--muted);font-weight:600;font-size:.78rem;text-transform:uppercase;letter-spacing:.03em}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.bar{
+  height:6px;border-radius:99px;background:#e7eef1;overflow:hidden;margin-top:.35rem
+}
+.bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent-2));border-radius:99px;transition:width 1s ease .5s}
+.footer{
+  margin-top:1.6rem;color:var(--muted);font-size:.82rem;
+  display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+}
+.footer a{color:var(--accent);text-decoration:none;font-weight:500}
+@keyframes rise{to{opacity:1;transform:none}}
+@media (max-width:960px){
+  kpis{grid-template-columns:repeat(2,1fr)}
+  .grid{grid-template-columns:1fr}
+  .kpi:last-child{grid-column:1/-1}
+}
+@media (max-width:560px){
+  kpis{grid-template-columns:1fr}
+  .kpi:last-child{grid-column:auto}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <h1 class="brand">Cartenz <span>BD Achievement</span></h1>
+    <p class="lede">Dashboard web Revenue AR Invoice Semester 1 2026 — fokusokus ke Tanggal Invoice, Province, Kabupaten, Product, Revenue, dan PIC Name.</p>
+    <div class="meta">
+      <span>Sumber: <b>AR Invoice · BD Achive Smt 1</b></span>
+      <span>Filter: <b>Jan–Jun 2026</b></span>
+      <span>Generated: <b>16 Jul 2026</b></span>
+    </div>
+  </header>
+
+  <kpis>
+    <div class="kpi primary"><div class="label">Total Revenue</div><div class="value" id="kpiRevenue">—</div></div>
+    <div class="kpi"><div class="label"># Invoice</div><div class="value" id="kpiInvoice">—</div></div>
+    <div class="kpi"><div class="label"># PIC</div><div class="value" id="kpiPic">—</div></div>
+    <div class="kpi"><div class="label"># Product</div><div class="value" id="kpiProduct">—</div></div>
+    <div class="kpi"><div class="label"># Province</div><div class="value" id="kpiProvince">—</div></div>
+  </kpis>
+
+  <div class="grid">
+    <section class="panel"><h2>Revenue by PIC Name</h2><div class="chart-box tall"><canvas id="chartPic"></canvas></div></section>
+    <section class="panel"><h2>Revenue by Product</h2><div class="chart-box tall"><canvas id="chartProduct"></canvas></div></section>
+  </div>
+
+  <div class="grid">
+    <section class="panel"><h2>Revenue by Month</h2><div class="chart-box"><canvas id="chartMonth"></canvas></div></section>
+    <section class="panel"><h2>Revenue by Province</h2><div class="chart-box"><canvas id="chartProvince"></canvas></div></section>
+  </div>
+
+  <section class="panel" style="animation-delay:.45s">
+    <h2>Top 20 Kabupaten by Revenue</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>#</th><th>Province</th><th>Kabupaten</th><th class="num">Revenue</th></tr></thead>
+        <tbody id="kabBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="footer">
+    <span>Data statis dari export dashboard Sheets · tidak live-sync.</span>
+    <a href="https://docs.google.com/spreadsheets/d/1YPKf9DXiYRZuYu-KjMRTckfwFCtIvTWeeNZA6zXm6E8/edit" target="_blank" rel="noopener">Buka sumber Sheets</a>
+  </div>
+</div>
+
+<script>
+const DATA = {
+  kpis: { revenue: 16328539104, invoice: 893, pic: 10, product: 9, province: 22 },
+  pic: [
+    ["REZA FAHREVI", 3516435573, 21.5],
+    ["AHMAD MUZAKKI", 3167353192, 19.4],
+    ["YOSEP PIRDAOS", 2853511641, 17.5],
+    ["SYAHRUL RAHMAN", 2696093189, 16.5],
+    ["DITO WIRAWAN", 1550335135, 9.5],
+    ["YRZI RAFI HAKIM", 1465350000, 9.0],
+    ["AGATHA LINTANG K", 468086036, 2.9],
+    ["CONSULTING", 312341000, 1.9],
+    ["(Blank)", 201983338, 1.2],
+    ["ARIF ANWARUDDIN", 97050000, 0.6]
+  ],
+  product: [
+    ["EFD", 12373129095, 75.8],
+    ["SGov Pajak", 1741016153, 10.7],
+    ["CGov SuperApp", 468086036, 2.9],
+    ["(Blank)", 442250000, 2.7],
+    ["CGov Pajak", 364115045, 2.2],
+    ["GCloud", 329639613, 2.0],
+    ["Smart Water Meter", 297962162, 1.8],
+    ["Consulting", 169520000, 1.0],
+    ["CONSULTING", 142821000, 0.9]
+  ],
+  month: [
+    ["Jan", 1018851006],
+    ["Feb", 1783637872],
+    ["Mar", 3609897474],
+    ["Apr", 2860247367],
+    ["Mei", 3122709983],
+    ["Jun", 3933195403]
+  ],
+  province: [
+    ["BANTEN", 1914063924, 11.7],
+    ["KALIMANTAN SELATAN", 1676123112, 10.3],
+    ["YOGYAKARTA", 1538744729, 9.4],
+    ["SUMATERA BARAT", 1373889045, 8.4],
+    ["ACEH", 1034398531, 6.3],
+    ["JAWA TENGAH", 932238205, 5.7],
+    ["BALI", 906301200, 5.6],
+    ["KALIMANTAN BARAT", 886200000, 5.4],
+    ["SULAWESI TENGAH", 740637000, 4.5],
+    ["KALIMANTAN TIMUR", 664135135, 4.1],
+    ["NUSA TENGGARA BARAT", 605001228, 3.7],
+    ["LAMPUNG", 601351351, 3.7],
+    ["MALUKU", 561487950, 3.4],
+    ["SULAWESI UTARA", 553980000, 3.4],
+    ["JAWA TIMUR", 482045045, 3.0],
+    ["(Blank)", 442250000, 2.7],
+    ["DKI JAKARTA", 312341000, 1.9],
+    ["SUMATERA UTARA", 302220000, 1.9],
+    ["KALIMANTAN TENGAH", 267783000, 1.6],
+    ["JAWA BARAT", 244026036, 1.5],
+    ["RIAU", 176710000, 1.1],
+    ["BENGKULU", 112612613, 0.7]
+  ],
+  kabupaten: [
+    ["BANTEN", "KAB. TANGERANG", 1824154014],
+    ["SUMATERA BARAT", "SUMATERA BARAT", 1298964000],
+    ["KALIMANTAN SELATAN", "KOTA BANJARMASIN", 767881711],
+    ["SULAWESI TENGAH", "KOTA PALU", 695637000],
+    ["KALIMANTAN TIMUR", "KOTA BALIKPOPAN", 619135135],
+    ["MALUKU", "KOTA AMBON", 561487950],
+    ["SULAWESI UTARA", "SULAWESI UTARA", 553980000],
+    ["ACEH", "KAB. ACEH TENGAH", 529727000],
+    ["YOGYAKARTA", "KOTA YOGYAKARTA", 490630500],
+    ["NUSA TENGGARA BARAT", "NUSA TENGGARA BARAT", 477273300],
+    ["YOGYAKARTA", "KAB. SLEMAN", 447393700],
+    ["(Blank)", "(Blank)", 442250000],
+    ["LAMPUNG", "KOTA BANDAR LAMPUNG", 432432432],
+    ["BALI", "KOTA DENPASAR", 381119200],
+    ["BALI", "KAB. JEMBRANA", 360250000],
+    ["YOGYAKARTA", "KAB. BANTUL", 331629329],
+    ["DKI JAKARTA", "DKI JAKARTA", 312341000],
+    ["SUMATERA UTARA", "KAB. DELI SERDANG", 302220000],
+    ["KALIMANTAN BARAT", "KOTA PONTIANAK", 300000000],
+    ["KALIMANTAN SELATAN", "KAB. BANJAR", 243878559]
+  ]
+};
+
+// fix typo BALIKPOPAN -> BALIKPAPAN
+DATA.kabupaten[4][1] = "KOTA BALIKPAPAN";
+
+const rp = n => "Rp " + Math.round(n).toLocaleString("id-ID");
+const rpShort = n => {
+  if (n >= 1e12) return "Rp " + (n/1e12).toFixed(2).replace(".",",") + " T";
+  if (n >= 1e9) return "Rp " + (n/1e9).toFixed(2).replace(".",",") + " M";
+  if (n >= 1e6) return "Rp " + (n/1e6).toFixed(1).replace(".",",") + " jt";
+  return rp(n);
+};
+
+document.getElementById("kpiRevenue").textContent = rpShort(DATA.kpis.revenue);
+document.getElementById("kpiInvoice").textContent = DATA.kpis.invoice.toLocaleString("id-ID");
+document.getElementById("kpiPic").textContent = DATA.kpis.pic;
+document.getElementById("kpiProduct").textContent = DATA.kpis.product;
+document.getElementById("kpiProvince").textContent = DATA.kpis.province;
+
+const maxKab = Math.max(...DATA.kabupaten.map(x => x[2]));
+document.getElementById("kabBody").innerHTML = DATA.kabupaten.map((r,i) => `
+  <tr>
+    <td>${i+1}</td>
+    <td>${r[0]}</td>
+    <td>${r[1]}<div class="bar"><i style="width:${(r[2]/maxKab*100).toFixed(1)}%"></i></div></td>
+    <td class="num">${rp(r[2])}</td>
+  </tr>`).join("");
+
+const grid = { color: "rgba(90,107,117,.12)" };
+const tip = {
+  callbacks: {
+    label: (ctx) => {
+      const v = ctx.parsed.x ?? ctx.parsed.y ?? ctx.parsed;
+      return " " + rp(v);
+    }
+  }
+};
+
+Chart.defaults.font.family = "Outfit, system-ui, sans-serif";
+Chart.defaults.color = "#5a6b75";
+
+new Chart(document.getElementById("chartPic"), {
+  type: "bar",
+  data: {
+    labels: DATA.pic.map(x => x[0]),
+    datasets: [{
+      data: DATA.pic.map(x => x[1]),
+      backgroundColor: "#0e7c66",
+      borderRadius: 8,
+      barThickness: 18
+    }]
+  },
+  options: {
+    indexAxis: "y",
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: tip },
+    scales: {
+      x: { grid, ticks: { callback: v => rpShort(v) } },
+      y: { grid: { display: false } }
+    },
+    animation: { duration: 900 }
+  }
+});
+
+new Chart(document.getElementById("chartProduct"), {
+  type: "doughnut",
+  data: {
+    labels: DATA.product.map(x => x[0]),
+    datasets: [{
+      data: DATA.product.map(x => x[1]),
+      backgroundColor: ["#0e7c66","#1a9b7e","#3bb89a","#7bcfb8","#c45c26","#d98a55","#0f1c24","#5a6b75","#a8b5bd"],
+      borderWidth: 0,
+      hoverOffset: 6
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    cutout: "58%",
+    plugins: {
+      legend: { position: "right", labels: { boxWidth: 12, padding: 10 } },
+      tooltip: tip
+    },
+    animation: { animateRotate: true, duration: 1000 }
+  }
+});
+
+new Chart(document.getElementById("chartMonth"), {
+  type: "line",
+  data: {
+    labels: DATA.month.map(x => x[0]),
+    datasets: [{
+      data: DATA.month.map(x => x[1]),
+      borderColor: "#0e7c66",
+      backgroundColor: "rgba(14,124,102,.16)",
+      fill: true,
+      tension: .35,
+      pointRadius: 4,
+      pointBackgroundColor: "#0e7c66",
+      borderWidth: 2.5
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: tip },
+    scales: {
+      x: { grid: { display: false } },
+      y: { grid, ticks: { callback: v => rpShort(v) } }
+    },
+    animation: { duration: 950 }
+  }
+});
+
+new Chart(document.getElementById("chartProvince"), {
+  type: "bar",
+  data: {
+    labels: DATA.province.slice(0,10).map(x => x[0]),
+    datasets: [{
+      data: DATA.province.slice(0,10).map(x => x[1]),
+      backgroundColor: "#c45c26",
+      borderRadius: 8,
+      barThickness: 16
+    }]
+  },
+  options: {
+    indexAxis: "y",
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: tip },
+    scales: {
+      x: { grid, ticks: { callback: v => rpShort(v) } },
+      y: { grid: { display: false } }
+    },
+    animation: { duration: 900 }
+  }
+});
+</script>
+</body>
+</html>
