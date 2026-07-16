@@ -180,36 +180,36 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
 
 @media (max-width:640px){
   .table-wrap{max-height:none;overflow:visible}
-  .kab-table thead{display:none}
-  .kab-table,.kab-table tbody,.kab-table tr,.kab-table td{display:block;width:100%}
-  .kab-table tr{
+  .stack-table thead{display:none}
+  .stack-table,.stack-table tbody,.stack-table tr,.stack-table td{display:block;width:100%}
+  .stack-table tr{
     background:#fff;
     border:1px solid var(--line);
     border-radius:12px;
     padding:.85rem 1rem;
     margin-bottom:.75rem;
   }
-  .kab-table td{
+  .stack-table td{
     border:0;
     padding:.28rem 0;
     text-align:left!important;
   }
-  .kab-table td::before{
+  .stack-table td::before{
     content:attr(data-label) " : ";
     color:var(--muted);
     font-weight:600;
     font-size:.82rem;
   }
-  .kab-table td.rank{
+  .stack-table td.rank{
     font-weight:700;
     color:var(--accent);
     padding-bottom:.45rem;
     margin-bottom:.35rem;
     border-bottom:1px solid var(--line);
   }
-  .kab-table td.rank::before{content:"#"}
-  .kab-table td .bar{margin-top:.4rem}
-  .kab-table td.num{font-weight:600}
+  .stack-table td.rank::before{content:"#"}
+  .stack-table td .bar{margin-top:.4rem}
+  .stack-table td.num{font-weight:600}
 }
 </style>
 </head>
@@ -258,10 +258,20 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
     <section class="panel"><h2>Revenue by Province</h2><div class="chart-box"><canvas id="chartProvince"></canvas></div></section>
   </div>
 
+  <section class="panel" style="animation-delay:.4s">
+    <h2>Revenue by Province</h2>
+    <div class="table-wrap">
+      <table class="stack-table">
+        <thead><tr><th>#</th><th>Province</th><th class="num">Revenue</th></tr></thead>
+        <tbody id="provBody"></tbody>
+      </table>
+    </div>
+  </section>
+
   <section class="panel" style="animation-delay:.45s">
     <h2>Top 20 Kabupaten by Revenue</h2>
     <div class="table-wrap">
-      <table class="kab-table">
+      <table class="stack-table">
         <thead><tr><th>#</th><th>Province</th><th>Kabupaten</th><th class="num">Revenue</th></tr></thead>
         <tbody id="kabBody"></tbody>
       </table>
@@ -431,6 +441,14 @@ function render() {
   charts.province.data.labels = topProv.map(x=>x[0]);
   charts.province.data.datasets[0].data = topProv.map(x=>x[1]);
   charts.province.update();
+
+  const maxProv = Math.max(1, ...provAgg.map(x=>x[1]));
+  document.getElementById('provBody').innerHTML = provAgg.map((r,i) => `
+    <tr>
+      <td class="rank" data-label="">${i+1}</td>
+      <td data-label="Province">${r[0]}<div class="bar"><i style="width:${(r[1]/maxProv*100).toFixed(1)}%"></i></div></td>
+      <td class="num" data-label="Revenue">${rp(r[1])}</td>
+    </tr>`).join('') || '<tr><td colspan="3">Tidak ada data untuk filter ini.</td></tr>';
 
   const maxKab = Math.max(1, ...kabAgg.map(x=>x[2]));
   document.getElementById('kabBody').innerHTML = kabAgg.map((r,i) => `
