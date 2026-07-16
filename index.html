@@ -177,6 +177,40 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
   kpis{grid-template-columns:1fr}
   .kpi:last-child{grid-column:auto}
 }
+
+@media (max-width:640px){
+  .table-wrap{max-height:none;overflow:visible}
+  .kab-table thead{display:none}
+  .kab-table,.kab-table tbody,.kab-table tr,.kab-table td{display:block;width:100%}
+  .kab-table tr{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:.85rem 1rem;
+    margin-bottom:.75rem;
+  }
+  .kab-table td{
+    border:0;
+    padding:.28rem 0;
+    text-align:left!important;
+  }
+  .kab-table td::before{
+    content:attr(data-label) " : ";
+    color:var(--muted);
+    font-weight:600;
+    font-size:.82rem;
+  }
+  .kab-table td.rank{
+    font-weight:700;
+    color:var(--accent);
+    padding-bottom:.45rem;
+    margin-bottom:.35rem;
+    border-bottom:1px solid var(--line);
+  }
+  .kab-table td.rank::before{content:"#"}
+  .kab-table td .bar{margin-top:.4rem}
+  .kab-table td.num{font-weight:600}
+}
 </style>
 </head>
 <body>
@@ -227,7 +261,7 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
   <section class="panel" style="animation-delay:.45s">
     <h2>Top 20 Kabupaten by Revenue</h2>
     <div class="table-wrap">
-      <table>
+      <table class="kab-table">
         <thead><tr><th>#</th><th>Province</th><th>Kabupaten</th><th class="num">Revenue</th></tr></thead>
         <tbody id="kabBody"></tbody>
       </table>
@@ -401,10 +435,10 @@ function render() {
   const maxKab = Math.max(1, ...kabAgg.map(x=>x[2]));
   document.getElementById('kabBody').innerHTML = kabAgg.map((r,i) => `
     <tr>
-      <td>${i+1}</td>
-      <td>${r[0]}</td>
-      <td>${r[1]}<div class="bar"><i style="width:${(r[2]/maxKab*100).toFixed(1)}%"></i></div></td>
-      <td class="num">${rp(r[2])}</td>
+      <td class="rank" data-label="">${i+1}</td>
+      <td data-label="Province">${r[0]}</td>
+      <td data-label="Kabupaten">${r[1]}<div class="bar"><i style="width:${(r[2]/maxKab*100).toFixed(1)}%"></i></div></td>
+      <td class="num" data-label="Revenue">${rp(r[2])}</td>
     </tr>`).join('') || '<tr><td colspan="4">Tidak ada data untuk filter ini.</td></tr>';
 }
 
