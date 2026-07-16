@@ -361,7 +361,7 @@ function render() {
   const provAgg = agg(rows, 3);
   const kabAgg = aggKab(rows);
 
-  document.getElementById('kpiRevenue').textContent = rpShort(total);
+  document.getElementById('kpiRevenue').textContent = Math.round(total).toLocaleString('id-ID');
   document.getElementById('kpiInvoice').textContent = rows.length.toLocaleString('id-ID');
   document.getElementById('kpiPic').textContent = new Set(rows.map(r=>r[1])).size;
   document.getElementById('kpiProduct').textContent = new Set(rows.map(r=>r[2])).size;
