@@ -152,7 +152,7 @@ kpis{
 }
 .chart-box{position:relative;height:300px}
 .chart-box.tall{height:340px}
-.table-wrap{overflow:auto;max-height:420px}
+.table-wrap{overflow:auto;max-height:calc(2.2rem + 3 * 2.9rem);-webkit-overflow-scrolling:touch}
 table{width:100%;border-collapse:collapse;font-size:.92rem}
 th,td{padding:.55rem .4rem;border-bottom:1px solid var(--line);text-align:left}
 th{position:sticky;top:0;background:#fff;color:var(--muted);font-weight:600;font-size:.78rem;text-transform:uppercase;letter-spacing:.03em}
@@ -179,7 +179,7 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
 }
 
 @media (max-width:640px){
-  .table-wrap{max-height:none;overflow:visible}
+  .table-wrap{max-height:calc(3 * 7.4rem);overflow:auto;-webkit-overflow-scrolling:touch}
   .stack-table thead{display:none}
   .stack-table,.stack-table tbody,.stack-table tr,.stack-table td{display:block;width:100%}
   .stack-table tr{
