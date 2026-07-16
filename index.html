@@ -249,7 +249,14 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
   </kpis>
 
   <div class="grid">
-    <section class="panel"><h2>Revenue by PIC Name</h2><div class="chart-box tall"><canvas id="chartPic"></canvas></div></section>
+    <section class="panel"><h2>Revenue by PIC Name</h2>
+      <div class="table-wrap">
+        <table class="stack-table">
+          <thead><tr><th>#</th><th>PIC Name</th><th class="num">Revenue</th></tr></thead>
+          <tbody id="picBody"></tbody>
+        </table>
+      </div>
+    </section>
     <section class="panel"><h2>Revenue by Product</h2><div class="chart-box tall"><canvas id="chartProduct"></canvas></div></section>
   </div>
 
@@ -356,16 +363,6 @@ Chart.defaults.font.family = "Outfit, system-ui, sans-serif";
 Chart.defaults.color = "#5a6b75";
 
 const charts = {
-  pic: new Chart(document.getElementById("chartPic"), {
-    type: "bar",
-    data: { labels: [], datasets: [{ data: [], backgroundColor: "#0e7c66", borderRadius: 8, barThickness: 18 }] },
-    options: {
-      indexAxis: "y", responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { display: false }, tooltip: tip },
-      scales: { x: { grid, ticks: { callback: v => rpShort(v) } }, y: { grid: { display: false } } },
-      animation: { duration: 650 }
-    }
-  }),
   product: new Chart(document.getElementById("chartProduct"), {
     type: "doughnut",
     data: { labels: [], datasets: [{ data: [], backgroundColor: ["#0e7c66","#1a9b7e","#3bb89a","#7bcfb8","#c45c26","#d98a55","#0f1c24","#5a6b75","#a8b5bd"], borderWidth: 0, hoverOffset: 6 }] },
@@ -425,9 +422,13 @@ function render() {
   const prodLabel = fProduct.value || 'Semua Product';
   document.getElementById('filterLabel').textContent = pLabel + ' · ' + picLabel + ' · ' + prodLabel;
 
-  charts.pic.data.labels = picAgg.map(x=>x[0]);
-  charts.pic.data.datasets[0].data = picAgg.map(x=>x[1]);
-  charts.pic.update();
+  const maxPic = Math.max(1, ...picAgg.map(x=>x[1]));
+  document.getElementById('picBody').innerHTML = picAgg.map((r,i) => `
+    <tr>
+      <td class="rank" data-label="">${i+1}</td>
+      <td data-label="PIC Name">${r[0]}<div class="bar"><i style="width:${(r[1]/maxPic*100).toFixed(1)}%"></i></div></td>
+      <td class="num" data-label="Revenue">${rp(r[1])}</td>
+    </tr>`).join('') || '<tr><td colspan="3">Tidak ada data untuk filter ini.</td></tr>';
 
   charts.product.data.labels = prodAgg.map(x=>x[0]);
   charts.product.data.datasets[0].data = prodAgg.map(x=>x[1]);
