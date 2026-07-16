@@ -257,13 +257,20 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
         </table>
       </div>
     </section>
-    <section class="panel"><h2>Revenue by Product</h2><div class="chart-box tall"><canvas id="chartProduct"></canvas></div></section>
+    <section class="panel"><h2>Revenue by Product</h2>
+      <div class="table-wrap">
+        <table class="stack-table">
+          <thead><tr><th>#</th><th>Product</th><th class="num">Revenue</th></tr></thead>
+          <tbody id="productBody"></tbody>
+        </table>
+      </div>
+    </section>
   </div>
 
-  <div class="grid">
-    <section class="panel"><h2>Revenue by Month</h2><div class="chart-box"><canvas id="chartMonth"></canvas></div></section>
-    <section class="panel"><h2>Revenue by Province</h2><div class="chart-box"><canvas id="chartProvince"></canvas></div></section>
-  </div>
+  <section class="panel">
+    <h2>Revenue by Month</h2>
+    <div class="chart-box"><canvas id="chartMonth"></canvas></div>
+  </section>
 
   <section class="panel" style="animation-delay:.4s">
     <h2>Revenue by Province</h2>
@@ -363,15 +370,6 @@ Chart.defaults.font.family = "Outfit, system-ui, sans-serif";
 Chart.defaults.color = "#5a6b75";
 
 const charts = {
-  product: new Chart(document.getElementById("chartProduct"), {
-    type: "doughnut",
-    data: { labels: [], datasets: [{ data: [], backgroundColor: ["#0e7c66","#1a9b7e","#3bb89a","#7bcfb8","#c45c26","#d98a55","#0f1c24","#5a6b75","#a8b5bd"], borderWidth: 0, hoverOffset: 6 }] },
-    options: {
-      responsive: true, maintainAspectRatio: false, cutout: "58%",
-      plugins: { legend: { position: "right", labels: { boxWidth: 12, padding: 10 } }, tooltip: tip },
-      animation: { animateRotate: true, duration: 800 }
-    }
-  }),
   month: new Chart(document.getElementById("chartMonth"), {
     type: "line",
     data: { labels: [], datasets: [{ data: [], borderColor: "#0e7c66", backgroundColor: "rgba(14,124,102,.16)", fill: true, tension: .35, pointRadius: 4, pointBackgroundColor: "#0e7c66", borderWidth: 2.5 }] },
@@ -380,16 +378,6 @@ const charts = {
       plugins: { legend: { display: false }, tooltip: tip },
       scales: { x: { grid: { display: false } }, y: { grid, ticks: { callback: v => rpShort(v) } } },
       animation: { duration: 700 }
-    }
-  }),
-  province: new Chart(document.getElementById("chartProvince"), {
-    type: "bar",
-    data: { labels: [], datasets: [{ data: [], backgroundColor: "#c45c26", borderRadius: 8, barThickness: 16 }] },
-    options: {
-      indexAxis: "y", responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { display: false }, tooltip: tip },
-      scales: { x: { grid, ticks: { callback: v => rpShort(v) } }, y: { grid: { display: false } } },
-      animation: { duration: 650 }
     }
   })
 };
@@ -430,18 +418,17 @@ function render() {
       <td class="num" data-label="Revenue">${rp(r[1])}</td>
     </tr>`).join('') || '<tr><td colspan="3">Tidak ada data untuk filter ini.</td></tr>';
 
-  charts.product.data.labels = prodAgg.map(x=>x[0]);
-  charts.product.data.datasets[0].data = prodAgg.map(x=>x[1]);
-  charts.product.update();
+  const maxProd = Math.max(1, ...prodAgg.map(x=>x[1]));
+  document.getElementById('productBody').innerHTML = prodAgg.map((r,i) => `
+    <tr>
+      <td class="rank" data-label="">${i+1}</td>
+      <td data-label="Product">${r[0]}<div class="bar"><i style="width:${(r[1]/maxProd*100).toFixed(1)}%"></i></div></td>
+      <td class="num" data-label="Revenue">${rp(r[1])}</td>
+    </tr>`).join('') || '<tr><td colspan="3">Tidak ada data untuk filter ini.</td></tr>';
 
   charts.month.data.labels = monthSeries.map(x => MONTH_LABEL[x[0]] || x[0]);
   charts.month.data.datasets[0].data = monthSeries.map(x=>x[1]);
   charts.month.update();
-
-  const topProv = provAgg.slice(0,10);
-  charts.province.data.labels = topProv.map(x=>x[0]);
-  charts.province.data.datasets[0].data = topProv.map(x=>x[1]);
-  charts.province.update();
 
   const maxProv = Math.max(1, ...provAgg.map(x=>x[1]));
   document.getElementById('provBody').innerHTML = provAgg.map((r,i) => `
