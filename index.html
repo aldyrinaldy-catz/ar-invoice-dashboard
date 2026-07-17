@@ -33,151 +33,175 @@ body{
     linear-gradient(180deg, #eef3f5 0%, var(--paper) 40%, #e8eef1 100%);
   min-height:100vh;
 }
-.wrap{width:min(1180px,calc(100% - 2rem));margin:0 auto;padding:2rem 0 3.5rem}
+.wrap{width:min(1080px,calc(100% - 2rem));margin:0 auto;padding:0 0 4rem}
 .hero{
   position:relative;
-  padding:2.2rem 0 1.4rem;
-  opacity:0;transform:translateY(14px);
-  animation:rise .7s ease forwards;
+  margin:0 calc(50% - 50vw);
+  width:100vw;
+  padding:3.2rem max(1rem, calc(50vw - 540px)) 2.4rem;
+  background:
+    linear-gradient(135deg, rgba(14,124,102,.92) 0%, rgba(11,90,75,.88) 48%, rgba(15,40,48,.9) 100%),
+    radial-gradient(800px 400px at 80% 20%, rgba(196,92,38,.25), transparent 60%);
+  color:#fff;
+  overflow:hidden;
+  opacity:0;transform:translateY(12px);
+  animation:rise .75s ease forwards;
 }
+.hero::after{
+  content:"";
+  position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events:none;
+}
+.hero-inner{position:relative;z-index:1;max-width:1080px}
 .brand{
   font-family:"Source Serif 4",Georgia,serif;
-  font-size:clamp(2.4rem,5vw,3.6rem);
+  font-size:clamp(2.8rem,6vw,4.2rem);
   font-weight:600;
-  letter-spacing:-.02em;
-  line-height:1.05;
-  margin:0 0 .55rem;
+  letter-spacing:-.03em;
+  line-height:1.02;
+  margin:0 0 .7rem;
 }
-.brand span{color:var(--accent)}
+.brand span{opacity:.92;font-weight:500}
 .lede{
-  max-width:38rem;
-  color:var(--muted);
-  font-size:1.05rem;
+  max-width:32rem;
+  color:rgba(255,255,255,.82);
+  font-size:1.08rem;
   line-height:1.55;
-  margin:0 0 1.5rem;
+  margin:0 0 1.6rem;
 }
-.meta{
-  display:flex;flex-wrap:wrap;gap:.6rem .9rem;
-  color:var(--muted);font-size:.88rem;
+.hero-rev{
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:.6rem 1.2rem;
+  margin-bottom:1.6rem;
 }
-.meta b{color:var(--ink);font-weight:600}
+.hero-rev .big{
+  font-size:clamp(1.8rem,4vw,2.6rem);
+  font-weight:700;
+  letter-spacing:-.02em;
+  font-variant-numeric:tabular-nums;
+}
+.hero-rev .sub{color:rgba(255,255,255,.7);font-size:.95rem}
 .filters{
   display:grid;
   grid-template-columns:1fr 1fr 1fr auto;
   gap:.85rem;
   align-items:end;
-  margin:1.4rem 0 0;
   padding:1rem 1.1rem;
-  background:var(--card);
-  border:1px solid rgba(213,221,227,.9);
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.22);
   border-radius:var(--radius);
-  box-shadow:var(--shadow);
+  backdrop-filter:blur(8px);
 }
 .field label{
   display:block;
-  font-size:.78rem;
-  letter-spacing:.04em;
+  font-size:.72rem;
+  letter-spacing:.05em;
   text-transform:uppercase;
-  color:var(--muted);
+  color:rgba(255,255,255,.7);
   margin-bottom:.35rem;
 }
 .field select{
   width:100%;
   appearance:none;
-  border:1px solid var(--line);
+  border:1px solid rgba(255,255,255,.25);
   border-radius:12px;
   padding:.7rem .9rem;
   font:inherit;
   color:var(--ink);
   background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%235a6b75' d='M1 1l5 5 5-5'/%3E%3C/svg%3E") right .9rem center/12px no-repeat;
 }
-.field select:focus{outline:2px solid rgba(14,124,102,.25);border-color:var(--accent)}
+.field select:focus{outline:2px solid rgba(255,255,255,.35);border-color:var(--accent)}
 .btn-reset{
-  border:1px solid var(--line);
-  background:#f8fafb;
-  color:var(--ink);
+  border:1px solid rgba(255,255,255,.35);
+  background:rgba(255,255,255,.15);
+  color:#fff;
   border-radius:12px;
   padding:.72rem 1rem;
   font:inherit;
   font-weight:600;
   cursor:pointer;
 }
-.btn-reset:hover{background:#eef3f5}
-kpis{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:.85rem;
-  margin:1.6rem 0 2rem;
+.btn-reset:hover{background:rgba(255,255,255,.25)}
+.story{
+  margin-top:2.4rem;
+  opacity:0;transform:translateY(18px);
+  animation:rise .7s ease forwards;
 }
-.kpi{
-  background:var(--card);
-  border:1px solid rgba(213,221,227,.8);
-  border-radius:var(--radius);
-  padding:1.05rem 1.1rem 1rem;
-  box-shadow:var(--shadow);
-  opacity:0;transform:translateY(16px);
-  animation:rise .65s ease forwards;
+.story:nth-of-type(1){animation-delay:.1s}
+.story:nth-of-type(2){animation-delay:.18s}
+.story:nth-of-type(3){animation-delay:.26s}
+.story:nth-of-type(4){animation-delay:.34s}
+.story-head{margin-bottom:1.1rem}
+.story-head h2{
+  font-family:"Source Serif 4",Georgia,serif;
+  font-size:clamp(1.45rem,2.8vw,1.85rem);
+  font-weight:600;
+  letter-spacing:-.02em;
+  margin:0 0 .4rem;
+  line-height:1.2;
 }
-.kpi:nth-child(1){animation-delay:.08s}
-.kpi:nth-child(2){animation-delay:.14s}
-.kpi:nth-child(3){animation-delay:.2s}
-.kpi:nth-child(4){animation-delay:.26s}
-.kpi:nth-child(5){animation-delay:.32s}
-.kpi .label{font-size:.78rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-bottom:.35rem}
-.kpi .value{font-size:clamp(1.15rem,2.4vw,1.55rem);font-weight:700;letter-spacing:-.02em}
-.kpi.primary{
-  background:linear-gradient(145deg,#0e7c66 0%,#146f5f 55%,#0b5a4b 100%);
-  color:#fff;border:none;
+.story-head .insight{
+  color:var(--muted);
+  font-size:.98rem;
+  line-height:1.5;
+  margin:0;
+  max-width:40rem;
 }
-.kpi.primary .label{color:rgba(255,255,255,.78)}
-.grid{
-  display:grid;
-  grid-template-columns:1.15fr .85fr;
-  gap:1rem;
-  margin-bottom:1rem;
-}
+.story-head .insight b{color:var(--ink);font-weight:600}
+kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:.85rem}
+.kpi{padding:1rem 0 .2rem;border-top:2px solid var(--accent)}
+.kpi .label{font-size:.75rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-bottom:.3rem}
+.kpi .value{font-size:clamp(1.2rem,2.2vw,1.55rem);font-weight:700;letter-spacing:-.02em}
+.kpi .share{font-size:.82rem;color:var(--muted);margin-top:.25rem}
+.kpi .share b{color:var(--accent)}
 .panel{
   background:var(--card);
   border:1px solid rgba(213,221,227,.85);
   border-radius:var(--radius);
   padding:1.15rem 1.2rem 1.1rem;
   box-shadow:var(--shadow);
-  opacity:0;transform:translateY(18px);
-  animation:rise .7s ease forwards .35s;
-}
-.panel h2{
-  margin:0 0 .85rem;
-  font-size:1rem;
-  font-weight:600;
 }
 .chart-box{position:relative;height:300px}
-.chart-box.tall{height:340px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.panel h3{
+  margin:0 0 .85rem;
+  font-size:.92rem;
+  font-weight:600;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:.04em;
+}
 .table-wrap{overflow:auto;max-height:calc(2.2rem + 3 * 2.9rem);-webkit-overflow-scrolling:touch}
 table{width:100%;border-collapse:collapse;font-size:.92rem}
 th,td{padding:.55rem .4rem;border-bottom:1px solid var(--line);text-align:left}
 th{position:sticky;top:0;background:#fff;color:var(--muted);font-weight:600;font-size:.78rem;text-transform:uppercase;letter-spacing:.03em}
 td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
-.bar{
-  height:6px;border-radius:99px;background:#e7eef1;overflow:hidden;margin-top:.35rem
-}
+td.share,th.share{text-align:right;width:4.2rem;color:var(--muted);font-size:.88rem}
+.bar{height:6px;border-radius:99px;background:#e7eef1;overflow:hidden;margin-top:.35rem}
 .bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent-2));border-radius:99px;transition:width 1s ease .5s}
+tr.prov-row{cursor:pointer}
+tr.prov-row:hover td{background:rgba(14,124,102,.04)}
+tr.prov-row.active td{background:rgba(14,124,102,.08)}
+.region-note{font-size:.85rem;color:var(--muted);margin:0 0 .75rem}
+.region-note button{
+  border:0;background:none;color:var(--accent);font:inherit;font-weight:600;cursor:pointer;padding:0;text-decoration:underline;
+}
 .footer{
-  margin-top:1.6rem;color:var(--muted);font-size:.82rem;
+  margin-top:2.8rem;padding-top:1.4rem;border-top:1px solid var(--line);
+  color:var(--muted);font-size:.82rem;
   display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;
 }
 .footer a{color:var(--accent);text-decoration:none;font-weight:500}
 @keyframes rise{to{opacity:1;transform:none}}
 @media (max-width:960px){
   kpis{grid-template-columns:repeat(2,1fr)}
-  .grid{grid-template-columns:1fr}
-  .kpi:last-child{grid-column:1/-1}
+  .grid-2{grid-template-columns:1fr}
   .filters{grid-template-columns:1fr}
 }
 @media (max-width:560px){
   kpis{grid-template-columns:1fr}
-  .kpi:last-child{grid-column:auto}
+  .hero{padding-top:2.4rem;padding-bottom:1.8rem}
 }
-
 @media (max-width:640px){
   .table-wrap{max-height:calc(3 * 7.4rem);overflow:auto;-webkit-overflow-scrolling:touch}
   .stack-table thead{display:none}
@@ -189,11 +213,7 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
     padding:.85rem 1rem;
     margin-bottom:.75rem;
   }
-  .stack-table td{
-    border:0;
-    padding:.28rem 0;
-    text-align:left!important;
-  }
+  .stack-table td{border:0;padding:.28rem 0;text-align:left!important}
   .stack-table td::before{
     content:attr(data-label) " : ";
     color:var(--muted);
@@ -201,27 +221,25 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
     font-size:.82rem;
   }
   .stack-table td.rank{
-    font-weight:700;
-    color:var(--accent);
-    padding-bottom:.45rem;
-    margin-bottom:.35rem;
+    font-weight:700;color:var(--accent);
+    padding-bottom:.45rem;margin-bottom:.35rem;
     border-bottom:1px solid var(--line);
   }
   .stack-table td.rank::before{content:"#"}
   .stack-table td .bar{margin-top:.4rem}
   .stack-table td.num{font-weight:600}
+  .stack-table td.share::before{content:"Share : "}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header class="hero">
+<header class="hero">
+  <div class="hero-inner">
     <h1 class="brand">Cartenz <span>BD Achievement</span></h1>
-    <p class="lede">Dashboard web Revenue AR Invoice Semester 1 2026 — fokus ke Tanggal Invoice, Province, Kabupaten, Product, Revenue, dan PIC Name.</p>
-    <div class="meta">
-      <span>Sumber: <b>AR Invoice — BD Achive Smt 1</b></span>
-      <span>Filter aktif: <b id="filterLabel">Semua periode · Semua PIC · Semua Product</b></span>
-      <span>Generated: <b>16 Jul 2026</b></span>
+    <p class="lede">Laporan revenue AR Invoice Semester 1 2026 — dibaca section demi section, dari ringkasan sampai wilayah.</p>
+    <div class="hero-rev">
+      <div class="big" id="kpiRevenue">—</div>
+      <div class="sub">Total revenue · <span id="filterLabel">Semua periode · Semua PIC · Semua Product</span></div>
     </div>
     <div class="filters">
       <div class="field">
@@ -238,62 +256,90 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
       </div>
       <button type="button" class="btn-reset" id="btnReset">Reset</button>
     </div>
-  </header>
-
-  <kpis>
-    <div class="kpi primary"><div class="label">Total Revenue</div><div class="value" id="kpiRevenue">—</div></div>
-    <div class="kpi"><div class="label"># Invoice</div><div class="value" id="kpiInvoice">—</div></div>
-    <div class="kpi"><div class="label"># PIC</div><div class="value" id="kpiPic">—</div></div>
-    <div class="kpi"><div class="label"># Product</div><div class="value" id="kpiProduct">—</div></div>
-    <div class="kpi"><div class="label"># Province</div><div class="value" id="kpiProvince">—</div></div>
-  </kpis>
-
-  <div class="grid">
-    <section class="panel"><h2>Revenue by PIC Name</h2>
-      <div class="table-wrap">
-        <table class="stack-table">
-          <thead><tr><th>#</th><th>PIC Name</th><th class="num">Revenue</th></tr></thead>
-          <tbody id="picBody"></tbody>
-        </table>
-      </div>
-    </section>
-    <section class="panel"><h2>Revenue by Product</h2>
-      <div class="table-wrap">
-        <table class="stack-table">
-          <thead><tr><th>#</th><th>Product</th><th class="num">Revenue</th></tr></thead>
-          <tbody id="productBody"></tbody>
-        </table>
-      </div>
-    </section>
   </div>
+</header>
 
-  <section class="panel">
-    <h2>Revenue by Month</h2>
-    <div class="chart-box"><canvas id="chartMonth"></canvas></div>
+<div class="wrap">
+  <section class="story">
+    <div class="story-head">
+      <h2>Ringkasan performa</h2>
+      <p class="insight" id="insightKpi">Memuat ringkasan…</p>
+    </div>
+    <kpis>
+      <div class="kpi"><div class="label"># Invoice</div><div class="value" id="kpiInvoice">—</div><div class="share" id="kpiInvoiceShare"></div></div>
+      <div class="kpi"><div class="label"># PIC</div><div class="value" id="kpiPic">—</div><div class="share" id="kpiPicShare"></div></div>
+      <div class="kpi"><div class="label"># Product</div><div class="value" id="kpiProduct">—</div><div class="share" id="kpiProductShare"></div></div>
+      <div class="kpi"><div class="label"># Province</div><div class="value" id="kpiProvince">—</div><div class="share" id="kpiProvinceShare"></div></div>
+    </kpis>
   </section>
 
-  <section class="panel" style="animation-delay:.4s">
-    <h2>Revenue by Province</h2>
-    <div class="table-wrap">
-      <table class="stack-table">
-        <thead><tr><th>#</th><th>Province</th><th class="num">Revenue</th></tr></thead>
-        <tbody id="provBody"></tbody>
-      </table>
+  <section class="story">
+    <div class="story-head">
+      <h2>Tren bulanan</h2>
+      <p class="insight" id="insightMonth">Memuat tren…</p>
+    </div>
+    <div class="panel">
+      <div class="chart-box"><canvas id="chartMonth"></canvas></div>
     </div>
   </section>
 
-  <section class="panel" style="animation-delay:.45s">
-    <h2>Top 20 Kabupaten by Revenue</h2>
-    <div class="table-wrap">
-      <table class="stack-table">
-        <thead><tr><th>#</th><th>Province</th><th>Kabupaten</th><th class="num">Revenue</th></tr></thead>
-        <tbody id="kabBody"></tbody>
-      </table>
+  <section class="story">
+    <div class="story-head">
+      <h2>Breakdown Product &amp; PIC</h2>
+      <p class="insight" id="insightBreak">Memuat breakdown…</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel">
+        <h3>Revenue by Product</h3>
+        <div class="table-wrap">
+          <table class="stack-table">
+            <thead><tr><th>#</th><th>Product</th><th class="share">Share</th><th class="num">Revenue</th></tr></thead>
+            <tbody id="productBody"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="panel">
+        <h3>Revenue by PIC Name</h3>
+        <div class="table-wrap">
+          <table class="stack-table">
+            <thead><tr><th>#</th><th>PIC Name</th><th class="share">Share</th><th class="num">Revenue</th></tr></thead>
+            <tbody id="picBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="story">
+    <div class="story-head">
+      <h2>Peta wilayah</h2>
+      <p class="insight" id="insightRegion">Memuat wilayah…</p>
+    </div>
+    <p class="region-note" id="regionNote">Klik baris province untuk fokus ke kabupaten di province itu. <button type="button" id="btnClearProv" hidden>Tampilkan semua kabupaten</button></p>
+    <div class="grid-2">
+      <div class="panel">
+        <h3>Revenue by Province</h3>
+        <div class="table-wrap">
+          <table class="stack-table">
+            <thead><tr><th>#</th><th>Province</th><th class="share">Share</th><th class="num">Revenue</th></tr></thead>
+            <tbody id="provBody"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="panel">
+        <h3>Top 20 Kabupaten</h3>
+        <div class="table-wrap">
+          <table class="stack-table">
+            <thead><tr><th>#</th><th>Province</th><th>Kabupaten</th><th class="num">Revenue</th></tr></thead>
+            <tbody id="kabBody"></tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </section>
 
   <div class="footer">
-    <span>Data row-level dari AR Invoice INV 2026 (Total DPP). Filter periode, PIC Name & Product interaktif.</span>
+    <span>Story Report · data row-level AR Invoice INV 2026 (Total DPP). Filter periode, PIC &amp; Product interaktif.</span>
     <a href="https://docs.google.com/spreadsheets/d/1YPKf9DXiYRZuYu-KjMRTckfwFCtIvTWeeNZA6zXm6E8/edit" target="_blank" rel="noopener">Buka sumber Sheets</a>
   </div>
 </div>
@@ -301,6 +347,7 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
 <script>
 // [month, pic, product, province, kab, rev]
 const ROWS = [["2026-01", "AHMAD MUZAKKI", "EFD", "NUSA TENGGARA BARAT", "NUSA TENGGARA BARAT",11363650.0],["2026-01", "AHMAD MUZAKKI", "EFD", "NUSA TENGGARA BARAT", "NUSA TENGGARA BARAT",34545496.0],["2026-01", "AHMAD MUZAKKI", "EFD", "NUSA TENGGARA BARAT", "NUSA TENGGARA BARAT",33636404.0],["2026-01", "SYAHRUL RAHMAN", "EFD", "ACEH", "KOTA LHOKSEUMAWE",2774772.0],["2026-01", "SYAHRUL RAHMAN", "EFD", "ACEH", "KOTA LHOKSEUMAWE",11495484.0],["2026-01", "SYAHRUL RAHMAN", "EFD", "ACEH", "KOTA LHOKSEUMAWE",792792.0],["2026-01", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARBARU",2269092.0],["2026-01", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARBARU",2458183.0],["2026-01", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARBARU",8112000.0],["2026-01", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARBARU",3744000.0],["2026-01", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARBARU",11648000.0],["2026-01", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TABALONG",378182.0],["2026-01", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TABALONG",3592729.0],["2026-01", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TABALONG",756364.0],["2026-01", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TABALONG",624000.0],["2026-01", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TABALONG",3744000.0],["2026-01", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TABALONG",3536000.0],["2026-01", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BARITO KUALA",1890910.0],["2026-01", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BARITO KUALA",2496000.0],["2026-01", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BANJAR",1134546.0],["2026-01", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BANJAR",2836365.0],["2026-01", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BANJAR",567273.0],["2026-01", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BANJAR",1664000.0],["2026-01", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BANJAR",6240000.0],["2026-01", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BANJAR",5408000.0],["2026-01", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. KOTABARU",1040000.0],["2026-01", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. KOTABARU",5200000.0],["2026-01", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. KOTABARU",416000.0],["2026-01", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. KOTABARU",1360000.0],["2026-01", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TANAH LAUT",6864000.0],["2026-01", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TANAH LAUT",416000.0],["2026-01", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. HULU SUNGAI SELATAN",5824000.0],["2026-01", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. HULU SUNGAI SELATAN",1248000.0],["2026-01", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. HULU SUNGAI UTARA",4594594.595],["2026-01", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. HULU SUNGAI UTARA",416000.0],["2026-01", "SYAHRUL RAHMAN", "EFD", "SUMATERA UTARA", "KAB. DELI SERDANG",30295000.0],["2026-01", "SYAHRUL RAHMAN", "EFD", "SUMATERA UTARA", "KAB. DELI SERDANG",2920000.0],["2026-01", "SYAHRUL RAHMAN", "EFD", "SUMATERA UTARA", "KAB. DELI SERDANG",18250000.0],["2026-01", "REZA FAHREVI", "EFD", "LAMPUNG", "KAB. LAMPUNG UTARA",11486486.49],["2026-01", "REZA FAHREVI", "EFD", "LAMPUNG", "KAB. LAMPUNG TIMUR",7657657.658],["2026-01", "REZA FAHREVI", "EFD", "LAMPUNG", "KAB. TANGGAMUS",7927927.928],["2026-01", "REZA FAHREVI", "EFD", "LAMPUNG", "KAB. TANGGAMUS",1081081.081],["2026-01", "REZA FAHREVI", "EFD", "LAMPUNG", "KOTA BANDAR LAMPUNG",11891891.89],["2026-01", "REZA FAHREVI", "EFD", "LAMPUNG", "KOTA BANDAR LAMPUNG",32792792.79],["2026-01", "REZA FAHREVI", "EFD", "LAMPUNG", "KOTA BANDAR LAMPUNG",27387387.39],["2026-01", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. LANDAK",10500000.0],["2026-01", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. LANDAK",4200000.0],["2026-01", "SYAHRUL RAHMAN", "EFD", "SUMATERA BARAT", "SUMATERA BARAT",25500000.0],["2026-01", "AHMAD MUZAKKI", "EFD", "BANTEN", "KAB. TANGERANG",41292803.0],["2026-01", "AHMAD MUZAKKI", "EFD", "BANTEN", "KAB. TANGERANG",4409911.0],["2026-01", "AHMAD MUZAKKI", "EFD", "BANTEN", "KAB. TANGERANG",209671223.0],["2026-01", "AHMAD MUZAKKI", "EFD", "BANTEN", "KAB. TANGERANG",34479232.0],["2026-01", "AHMAD MUZAKKI", "EFD", "NUSA TENGGARA BARAT", "KAB. LOMBOK TENGAH",9774774.77],["2026-06", "AHMAD MUZAKKI", "Smart Water Meter", "NUSA TENGGARA BARAT", "KAB. LOMBOK TENGAH",14549549.55],["2026-02", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. BANTUL",10427284.0],["2026-02", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. BANTUL",18163656.0],["2026-02", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. BANTUL",5045460.0],["2026-02", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. GUNUNG KIDUL",1009092.0],["2026-02", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. GUNUNG KIDUL",23545480.0],["2026-02", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. GUNUNG KIDUL",9081828.0],["2026-02", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. KULON PROGO",3363640.0],["2026-02", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. KULON PROGO",10090920.0],["2026-02", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. KULON PROGO",6727280.0],["2026-02", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. SLEMAN",27245484.0],["2026-02", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. SLEMAN",17827292.0],["2026-02", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. SLEMAN",5045460.0],["2026-02", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. SLEMAN",16851378.0],["2026-02", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. SLEMAN",6585596.0],["2026-02", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. SLEMAN",15495520.0],["2026-02", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KOTA YOGYAKARTA",16818200.0],["2026-02", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KOTA YOGYAKARTA",9418192.0],["2026-02", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KOTA YOGYAKARTA",6727280.0],["2026-02", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KOTA YOGYAKARTA",24211750.0],["2026-02", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KOTA YOGYAKARTA",8909924.0],["2026-02", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KOTA YOGYAKARTA",31184734.0],["2026-02", "REZA FAHREVI", "EFD", "LAMPUNG", "KAB. LAMPUNG UTARA",11486486.49],["2026-02", "REZA FAHREVI", "EFD", "LAMPUNG", "KAB. LAMPUNG TIMUR",7657657.658],["2026-02", "REZA FAHREVI", "EFD", "LAMPUNG", "KAB. TANGGAMUS",8288288.288],["2026-02", "REZA FAHREVI", "EFD", "LAMPUNG", "KAB. TANGGAMUS",720720.7207],["2026-02", "REZA FAHREVI", "EFD", "LAMPUNG", "KOTA BANDAR LAMPUNG",11891891.89],["2026-02", "REZA FAHREVI", "EFD", "LAMPUNG", "KOTA BANDAR LAMPUNG",32792792.79],["2026-02", "REZA FAHREVI", "EFD", "LAMPUNG", "KOTA BANDAR LAMPUNG",27387387.39],["2026-02", "YRZI RAFI HAKIM", "EFD", "SULAWESI UTARA", "SULAWESI UTARA",25075000.0],["2026-02", "YRZI RAFI HAKIM", "EFD", "SULAWESI UTARA", "SULAWESI UTARA",295000.0],["2026-02", "YRZI RAFI HAKIM", "EFD", "SULAWESI UTARA", "SULAWESI UTARA",60480000.0],["2026-02", "YRZI RAFI HAKIM", "EFD", "SULAWESI UTARA", "SULAWESI UTARA",11200000.0],["2026-02", "SYAHRUL RAHMAN", "EFD", "ACEH", "KOTA LHOKSEUMAWE",2774772.0],["2026-02", "SYAHRUL RAHMAN", "EFD", "ACEH", "KOTA LHOKSEUMAWE",11495484.0],["2026-02", "SYAHRUL RAHMAN", "EFD", "ACEH", "KOTA LHOKSEUMAWE",792792.0],["2026-02", "AHMAD MUZAKKI", "EFD", "NUSA TENGGARA BARAT", "NUSA TENGGARA BARAT",11590923.0],["2026-02", "AHMAD MUZAKKI", "EFD", "NUSA TENGGARA BARAT", "NUSA TENGGARA BARAT",34545496.0],["2026-02", "AHMAD MUZAKKI", "EFD", "NUSA TENGGARA BARAT", "NUSA TENGGARA BARAT",33409131.0],["2026-02", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. KEBUMEN",8648648.649],["2026-02", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. KEBUMEN",13333333.33],["2026-02", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. KEBUMEN",648648.6486],["2026-02", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. MAGELANG",4324324.324],["2026-02", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. MAGELANG",0.0],["2026-02", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. MAGELANG",1441441.441],["2026-02", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. PURWOREJO",4684684.685],["2026-02", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. PURWOREJO",14054054.05],["2026-02", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. PURWOREJO",936936.9369],["2026-02", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. SUKOHARJO",7207207.207],["2026-02", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. SUKOHARJO",4684684.685],["2026-02", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. SUKOHARJO",792792.7928],["2026-02", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. SUKOHARJO",2162162.162],["2026-02", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. SUKOHARJO",3459459.459],["2026-02", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. TEMANGGUNG",1081080.0],["2026-02", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. TEMANGGUNG",15495480.0],["2026-02", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. TEMANGGUNG",288288.0],["2026-02", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. WONOGIRI",1441441.441],["2026-02", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. WONOGIRI",12252252.25],["2026-02", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. WONOGIRI",144144.1441],["2026-02", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KOTA SEMARANG",7063063.063],["2026-02", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KOTA SEMARANG",6990990.991],["2026-02", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KOTA SEMARANG",8288288.288],["2026-02", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KOTA SEMARANG",5261261.261],["2026-02", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KOTA SEMARANG",2522522.523],["2026-02", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KOTA SURAKARTA",720720.7207],["2026-02", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KOTA SURAKARTA",4684684.685],["2026-02", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. TEGAL",4324324.324],["2026-02", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. TEGAL",9009009.009],["2026-02", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. TEGAL",4324324.324],["2026-02", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SINTANG",300000.0],["2026-02", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SINTANG",4800000.0],["2026-02", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SINTANG",8100000.0],["2026-02", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KOTA PONTIANAK",17400000.0],["2026-02", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KOTA PONTIANAK",1200000.0],["2026-02", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KOTA PONTIANAK",41400000.0],["2026-02", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. BENGKAYANG",18300000.0],["2026-02", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. BENGKAYANG",5400000.0],["2026-02", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SANGGAU",300000.0],["2026-02", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SANGGAU",9900000.0],["2026-02", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SANGGAU",4800000.0],["2026-02", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. LANDAK",10500000.0],["2026-02", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. LANDAK",4200000.0],["2026-02", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SAMBAS",2100000.0],["2026-02", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SAMBAS",4800000.0],["2026-02", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SEKADAU",8700000.0],["2026-02", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SEKADAU",2400000.0],["2026-02", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. KUBU RAYA",2700000.0],["2026-02", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. KUBU RAYA",900000.0],["2026-02", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. KUBU RAYA",10200000.0],["2026-02", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. MELAWI",1800000.0],["2026-02", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. MELAWI",2400000.0],["2026-02", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARBARU",2269092.0],["2026-02", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARBARU",2458183.0],["2026-02", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARBARU",8112000.0],["2026-02", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARBARU",3536000.0],["2026-02", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARBARU",11856000.0],["2026-02", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TABALONG",378182.0],["2026-02", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TABALONG",3403638.0],["2026-02", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TABALONG",945455.0],["2026-02", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TABALONG",624000.0],["2026-02", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TABALONG",3744000.0],["2026-02", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TABALONG",3536000.0],["2026-02", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BARITO KUALA",1890910.0],["2026-02", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BARITO KUALA",2496000.0],["2026-02", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BANJAR",1134546.0],["2026-02", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BANJAR",3025456.0],["2026-02", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BANJAR",567273.0],["2026-02", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BANJAR",1664000.0],["2026-02", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BANJAR",6240000.0],["2026-02", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BANJAR",5616000.0],["2026-02", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. KOTABARU",1040000.0],["2026-02", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. KOTABARU",5200000.0],["2026-02", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. KOTABARU",416000.0],["2026-02", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. KOTABARU",1360000.0],["2026-02", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TANAH LAUT",8944000.0],["2026-02", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TANAH LAUT",416000.0],["2026-02", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. HULU SUNGAI SELATAN",5824000.0],["2026-02", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. HULU SUNGAI SELATAN",1248000.0],["2026-02", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. KOTABARU",4756756.757],["2026-02", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. HULU SUNGAI UTARA",4594594.595],["2026-02", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. HULU SUNGAI UTARA",416000.0],["2026-02", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TAPIN",540540.0],["2026-02", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TAPIN",4324320.0],["2026-02", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TAPIN",2496000.0],["2026-02", "AHMAD MUZAKKI", "EFD", "MALUKU", "KOTA AMBON",8091900.0],["2026-02", "AHMAD MUZAKKI", "EFD", "MALUKU", "KOTA AMBON",74175750.0],["2026-02", "AHMAD MUZAKKI", "EFD", "MALUKU", "KOTA AMBON",30119850.0],["2026-02", "YOSEP PIRDAOS", "EFD", "JAWA TIMUR", "KAB. JOMBANG",608108.1081],["2026-02", "YOSEP PIRDAOS", "EFD", "JAWA TIMUR", "KAB. JOMBANG",25743243.24],["2026-02", "YOSEP PIRDAOS", "EFD", "JAWA TIMUR", "KAB. JOMBANG",13986486.49],["2026-02", "YOSEP PIRDAOS", "EFD", "JAWA TIMUR", "KOTA MALANG",6486486.486],["2026-02", "YOSEP PIRDAOS", "EFD", "JAWA TIMUR", "KOTA MALANG",11099099.1],["2026-02", "YOSEP PIRDAOS", "EFD", "JAWA TIMUR", "KOTA MALANG",43783783.78],["2026-02", "SYAHRUL RAHMAN", "EFD", "SUMATERA UTARA", "KAB. DELI SERDANG",29930000.0],["2026-02", "SYAHRUL RAHMAN", "EFD", "SUMATERA UTARA", "KAB. DELI SERDANG",2920000.0],["2026-02", "SYAHRUL RAHMAN", "EFD", "SUMATERA UTARA", "KAB. DELI SERDANG",18615000.0],["2026-02", "YRZI RAFI HAKIM", "EFD", "SULAWESI TENGAH", "KOTA PALU",8658000.0],["2026-02", "YRZI RAFI HAKIM", "EFD", "SULAWESI TENGAH", "KOTA PALU",15651000.0],["2026-02", "YRZI RAFI HAKIM", "EFD", "SULAWESI TENGAH", "KOTA PALU",42291000.0],["2026-02", "SYAHRUL RAHMAN", "EFD", "SUMATERA BARAT", "SUMATERA BARAT",25500000.0],["2026-02", "YOSEP PIRDAOS", "CGov Pajak", "JAWA TENGAH", "KAB. SUKOHARJO",45000000.0],["2026-02", "AHMAD MUZAKKI", "EFD", "BANTEN", "KAB. TANGERANG",41292803.0],["2026-02", "AHMAD MUZAKKI", "EFD", "BANTEN", "KAB. TANGERANG",4409911.0],["2026-02", "AHMAD MUZAKKI", "EFD", "BANTEN", "KAB. TANGERANG",209671223.0],["2026-02", "AHMAD MUZAKKI", "EFD", "BANTEN", "KAB. TANGERANG",34479232.0],["2026-05", "AHMAD MUZAKKI", "EFD", "NUSA TENGGARA BARAT", "KAB. LOMBOK TENGAH",10720720.72],["2026-02", "AHMAD MUZAKKI", "Smart Water Meter", "NUSA TENGGARA BARAT", "KAB. LOMBOK TENGAH",17612612.61],["2026-03", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. BANTUL",10427284.0],["2026-03", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. BANTUL",18163656.0],["2026-03", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. BANTUL",5045460.0],["2026-03", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. GUNUNG KIDUL",1009092.0],["2026-03", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. GUNUNG KIDUL",23545480.0],["2026-03", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. GUNUNG KIDUL",9081828.0],["2026-03", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. KULON PROGO",3363640.0],["2026-03", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. KULON PROGO",10090920.0],["2026-03", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. KULON PROGO",6727280.0],["2026-03", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. SLEMAN",16463990.0],["2026-03", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. SLEMAN",6391902.0],["2026-03", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. SLEMAN",15495520.0],["2026-03", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. SLEMAN",27918212.0],["2026-03", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. SLEMAN",18163656.0],["2026-03", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. SLEMAN",5045460.0],["2026-03", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KOTA YOGYAKARTA",23824362.0],["2026-03", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KOTA YOGYAKARTA",8522536.0],["2026-03", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KOTA YOGYAKARTA",31184734.0],["2026-03", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KOTA YOGYAKARTA",17154564.0],["2026-03", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KOTA YOGYAKARTA",10090920.0],["2026-03", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KOTA YOGYAKARTA",7063644.0],["2026-03", "YRZI RAFI HAKIM", "EFD", "SULAWESI UTARA", "SULAWESI UTARA",24190000.0],["2026-03", "YRZI RAFI HAKIM", "EFD", "SULAWESI UTARA", "SULAWESI UTARA",295000.0],["2026-03", "YRZI RAFI HAKIM", "EFD", "SULAWESI UTARA", "SULAWESI UTARA",55160000.0],["2026-03", "YRZI RAFI HAKIM", "EFD", "SULAWESI UTARA", "SULAWESI UTARA",10325000.0],["2026-03", "REZA FAHREVI", "EFD", "LAMPUNG", "KAB. LAMPUNG UTARA",11486486.49],["2026-03", "REZA FAHREVI", "EFD", "LAMPUNG", "KAB. LAMPUNG TIMUR",7657657.658],["2026-03", "REZA FAHREVI", "EFD", "LAMPUNG", "KAB. TANGGAMUS",8288288.288],["2026-03", "REZA FAHREVI", "EFD", "LAMPUNG", "KAB. TANGGAMUS",720720.7207],["2026-03", "REZA FAHREVI", "EFD", "LAMPUNG", "KOTA BANDAR LAMPUNG",11171171.17],["2026-03", "REZA FAHREVI", "EFD", "LAMPUNG", "KOTA BANDAR LAMPUNG",32792792.79],["2026-03", "REZA FAHREVI", "EFD", "LAMPUNG", "KOTA BANDAR LAMPUNG",28108108.11],["2026-03", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. KEBUMEN",8648648.649],["2026-03", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. KEBUMEN",13333333.33],["2026-03", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. KEBUMEN",648648.6486],["2026-03", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. MAGELANG",4324324.324],["2026-03", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. MAGELANG",0.0],["2026-03", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. MAGELANG",1441441.441],["2026-03", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. PURWOREJO",4684684.685],["2026-03", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. PURWOREJO",13693693.69],["2026-03", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. PURWOREJO",936936.9369],["2026-03", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. SUKOHARJO",7207207.207],["2026-03", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. SUKOHARJO",4684684.685],["2026-03", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. SUKOHARJO",792792.7928],["2026-03", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. SUKOHARJO",2162162.162],["2026-03", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. SUKOHARJO",3459459.459],["2026-03", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. TEMANGGUNG",1081080.0],["2026-03", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. TEMANGGUNG",15495480.0],["2026-03", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. TEMANGGUNG",288288.0],["2026-03", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. WONOGIRI",1441441.441],["2026-03", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. WONOGIRI",12252252.25],["2026-03", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. WONOGIRI",144144.1441],["2026-03", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KOTA SEMARANG",7063063.063],["2026-03", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KOTA SEMARANG",6990990.991],["2026-03", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KOTA SEMARANG",8288288.288],["2026-03", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KOTA SEMARANG",5189189.189],["2026-03", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KOTA SEMARANG",3099099.099],["2026-03", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KOTA SURAKARTA",720720.7207],["2026-03", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KOTA SURAKARTA",4684684.685],["2026-03", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. TEGAL",4324324.324],["2026-03", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. TEGAL",9009009.009],["2026-03", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. TEGAL",4324324.324],["2026-03", "AHMAD MUZAKKI", "EFD", "MALUKU", "KOTA AMBON",8091900.0],["2026-03", "AHMAD MUZAKKI", "EFD", "MALUKU", "KOTA AMBON",74175750.0],["2026-03", "AHMAD MUZAKKI", "EFD", "MALUKU", "KOTA AMBON",30119850.0],["2026-03", "SYAHRUL RAHMAN", "EFD", "SUMATERA UTARA", "KAB. DELI SERDANG",28470000.0],["2026-03", "SYAHRUL RAHMAN", "EFD", "SUMATERA UTARA", "KAB. DELI SERDANG",2920000.0],["2026-03", "SYAHRUL RAHMAN", "EFD", "SUMATERA UTARA", "KAB. DELI SERDANG",18250000.0],["2026-03", "SYAHRUL RAHMAN", "EFD", "ACEH", "KOTA LHOKSEUMAWE",2774772.0],["2026-03", "SYAHRUL RAHMAN", "EFD", "ACEH", "KOTA LHOKSEUMAWE",11495484.0],["2026-03", "SYAHRUL RAHMAN", "EFD", "ACEH", "KOTA LHOKSEUMAWE",792792.0],["2026-03", "AHMAD MUZAKKI", "EFD", "NUSA TENGGARA BARAT", "NUSA TENGGARA BARAT",11590923.0],["2026-03", "AHMAD MUZAKKI", "EFD", "NUSA TENGGARA BARAT", "NUSA TENGGARA BARAT",34545496.0],["2026-03", "AHMAD MUZAKKI", "EFD", "NUSA TENGGARA BARAT", "NUSA TENGGARA BARAT",33409131.0],["2026-03", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SINTANG",300000.0],["2026-03", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SINTANG",4800000.0],["2026-03", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SINTANG",8100000.0],["2026-03", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KOTA PONTIANAK",17400000.0],["2026-03", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KOTA PONTIANAK",1200000.0],["2026-03", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KOTA PONTIANAK",41400000.0],["2026-03", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. BENGKAYANG",18300000.0],["2026-03", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. BENGKAYANG",5400000.0],["2026-03", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SANGGAU",300000.0],["2026-03", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SANGGAU",9900000.0],["2026-03", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SANGGAU",4800000.0],["2026-03", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. LANDAK",10500000.0],["2026-03", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. LANDAK",4200000.0],["2026-03", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SAMBAS",2100000.0],["2026-03", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SAMBAS",4800000.0],["2026-03", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SEKADAU",8700000.0],["2026-03", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SEKADAU",2400000.0],["2026-03", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. KUBU RAYA",3300000.0],["2026-03", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. KUBU RAYA",900000.0],["2026-03", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. KUBU RAYA",10800000.0],["2026-03", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. MELAWI",1800000.0],["2026-03", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. MELAWI",2400000.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARBARU",2269092.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARBARU",2458183.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARBARU",8112000.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARBARU",3536000.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARBARU",11856000.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TABALONG",378182.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TABALONG",3403638.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TABALONG",945455.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TABALONG",624000.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TABALONG",3744000.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TABALONG",3536000.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BARITO KUALA",1890910.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BARITO KUALA",2496000.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BANJAR",1134546.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BANJAR",3025456.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BANJAR",567273.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BANJAR",1664000.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BANJAR",6240000.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BANJAR",5408000.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. KOTABARU",1040000.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. KOTABARU",5200000.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. KOTABARU",416000.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. KOTABARU",1360000.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TANAH LAUT",8736000.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TANAH LAUT",624000.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. HULU SUNGAI SELATAN",5824000.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. HULU SUNGAI SELATAN",1248000.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",21849102.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",30266379.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",19520919.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",3940002.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",5551821.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",8417277.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",5014548.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",5040000.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",16476372.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. KOTABARU",4756756.757],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. HULU SUNGAI UTARA",270270.2703],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. HULU SUNGAI UTARA",4594594.595],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. HULU SUNGAI UTARA",416000.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TAPIN",540540.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TAPIN",4324320.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TAPIN",2496000.0],["2026-03", "YRZI RAFI HAKIM", "EFD", "KALIMANTAN TENGAH", "KAB. KOTAWARINGIN BARAT",194883000.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",3940002.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",21849102.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",5551821.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",30624561.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",19162737.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",5014548.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",5040000.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",16476372.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",8417277.0],["2026-02", "REZA FAHREVI", "SGov Pajak", "BANTEN", "KOTA SERANG",89909910.0],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",19417477.48],["2026-03", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",19517567.57],["2026-03", "REZA FAHREVI", "SGov Pajak", "BALI", "KAB. JEMBRANA",270250000.0],["2026-03", "REZA FAHREVI", "CGov Pajak", "BALI", "KAB. JEMBRANA",90000000.0],["2026-03", "REZA FAHREVI", "(Blank)", "(Blank)", "(Blank)",397250000.0],["2026-03", "REZA FAHREVI", "(Blank)", "(Blank)", "(Blank)",45000000.0],["2026-03", "REZA FAHREVI", "SGov Pajak", "KALIMANTAN SELATAN", "KAB. TAPIN",132886000.0],["2026-04", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. BANTUL",10427284.0],["2026-04", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. BANTUL",18163656.0],["2026-04", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. BANTUL",5045460.0],["2026-04", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. GUNUNG KIDUL",1009092.0],["2026-04", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. GUNUNG KIDUL",23545480.0],["2026-04", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. GUNUNG KIDUL",9081828.0],["2026-04", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. KULON PROGO",3363640.0],["2026-04", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. KULON PROGO",10090920.0],["2026-04", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. KULON PROGO",6727280.0],["2026-04", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. SLEMAN",16270296.0],["2026-04", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. SLEMAN",6391902.0],["2026-04", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. SLEMAN",15495520.0],["2026-04", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. SLEMAN",27918212.0],["2026-04", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. SLEMAN",18163656.0],["2026-04", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. SLEMAN",5381824.0],["2026-04", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KOTA YOGYAKARTA",24018056.0],["2026-04", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KOTA YOGYAKARTA",8328842.0],["2026-04", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KOTA YOGYAKARTA",31184734.0],["2026-04", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KOTA YOGYAKARTA",16818200.0],["2026-04", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KOTA YOGYAKARTA",10090920.0],["2026-04", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KOTA YOGYAKARTA",7400008.0],["2026-04", "YRZI RAFI HAKIM", "EFD", "SULAWESI UTARA", "SULAWESI UTARA",24190000.0],["2026-04", "YRZI RAFI HAKIM", "EFD", "SULAWESI UTARA", "SULAWESI UTARA",295000.0],["2026-04", "YRZI RAFI HAKIM", "EFD", "SULAWESI UTARA", "SULAWESI UTARA",55160000.0],["2026-04", "YRZI RAFI HAKIM", "EFD", "SULAWESI UTARA", "SULAWESI UTARA",10325000.0],["2026-04", "REZA FAHREVI", "EFD", "LAMPUNG", "KAB. LAMPUNG UTARA",11486486.49],["2026-04", "REZA FAHREVI", "EFD", "LAMPUNG", "KAB. LAMPUNG TIMUR",7657657.658],["2026-04", "REZA FAHREVI", "EFD", "LAMPUNG", "KAB. TANGGAMUS",8288288.288],["2026-04", "REZA FAHREVI", "EFD", "LAMPUNG", "KAB. TANGGAMUS",720720.7207],["2026-04", "REZA FAHREVI", "EFD", "LAMPUNG", "KOTA BANDAR LAMPUNG",11171171.17],["2026-04", "REZA FAHREVI", "EFD", "LAMPUNG", "KOTA BANDAR LAMPUNG",32792792.79],["2026-04", "REZA FAHREVI", "EFD", "LAMPUNG", "KOTA BANDAR LAMPUNG",28108108.11],["2026-04", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SINTANG",300000.0],["2026-04", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SINTANG",4800000.0],["2026-04", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SINTANG",8100000.0],["2026-04", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KOTA PONTIANAK",17400000.0],["2026-04", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KOTA PONTIANAK",1200000.0],["2026-04", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KOTA PONTIANAK",41400000.0],["2026-04", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. BENGKAYANG",18300000.0],["2026-04", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. BENGKAYANG",5700000.0],["2026-04", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SANGGAU",300000.0],["2026-04", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SANGGAU",9900000.0],["2026-04", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SANGGAU",4800000.0],["2026-04", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. LANDAK",10500000.0],["2026-04", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. LANDAK",4200000.0],["2026-04", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SAMBAS",2100000.0],["2026-04", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SAMBAS",4800000.0],["2026-04", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SEKADAU",8700000.0],["2026-04", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SEKADAU",2400000.0],["2026-04", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. KUBU RAYA",3300000.0],["2026-04", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. KUBU RAYA",900000.0],["2026-04", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. KUBU RAYA",10800000.0],["2026-04", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. MELAWI",2700000.0],["2026-04", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. MELAWI",4800000.0],["2026-04", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. KAPUAS HULU",3900000.0],["2026-04", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. KAPUAS HULU",2100000.0],["2026-04", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARBARU",2269092.0],["2026-04", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARBARU",2458183.0],["2026-04", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARBARU",8112000.0],["2026-04", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARBARU",3536000.0],["2026-04", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARBARU",11856000.0],["2026-04", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TABALONG",378182.0],["2026-04", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TABALONG",3403638.0],["2026-04", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TABALONG",945455.0],["2026-04", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TABALONG",624000.0],["2026-04", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TABALONG",3744000.0],["2026-04", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TABALONG",3536000.0],["2026-04", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BARITO KUALA",1890910.0],["2026-04", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BARITO KUALA",2496000.0],["2026-04", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BANJAR",1134546.0],["2026-04", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BANJAR",3025456.0],["2026-04", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BANJAR",567273.0],["2026-04", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BANJAR",1872000.0],["2026-04", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BANJAR",6240000.0],["2026-04", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BANJAR",5408000.0],["2026-04", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. KOTABARU",1040000.0],["2026-04", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. KOTABARU",5200000.0],["2026-04", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. KOTABARU",416000.0],["2026-04", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. KOTABARU",1360000.0],["2026-04", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TANAH LAUT",8736000.0],["2026-04", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TANAH LAUT",624000.0],["2026-04", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. HULU SUNGAI SELATAN",5824000.0],["2026-04", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. HULU SUNGAI SELATAN",1248000.0],["2026-04", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",21670011.0],["2026-04", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",30624561.0],["2026-04", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",19341828.0],["2026-04", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",4298184.0],["2026-04", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",5551821.0],["2026-04", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",8059095.0],["2026-04", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",4656366.0],["2026-04", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",5250000.0],["2026-04", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",16655463.0],["2026-04", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",19517567.57],["2026-04", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. KOTABARU",4756756.757],["2026-04", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. HULU SUNGAI UTARA",270270.2703],["2026-04", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. HULU SUNGAI UTARA",4594594.595],["2026-04", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. HULU SUNGAI UTARA",416000.0],["2026-04", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TAPIN",540540.0],["2026-04", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TAPIN",4324320.0],["2026-04", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TAPIN",2496000.0],["2026-03", "REZA FAHREVI", "SGov Pajak", "KALIMANTAN SELATAN", "KAB. BANJAR",58500000.0],["2026-04", "SYAHRUL RAHMAN", "EFD", "ACEH", "KOTA LHOKSEUMAWE",2774772.0],["2026-04", "SYAHRUL RAHMAN", "EFD", "ACEH", "KOTA LHOKSEUMAWE",11495484.0],["2026-04", "SYAHRUL RAHMAN", "EFD", "ACEH", "KOTA LHOKSEUMAWE",792792.0],["2026-04", "AHMAD MUZAKKI", "EFD", "MALUKU", "KOTA AMBON",8541450.0],["2026-04", "AHMAD MUZAKKI", "EFD", "MALUKU", "KOTA AMBON",74175750.0],["2026-04", "AHMAD MUZAKKI", "EFD", "MALUKU", "KOTA AMBON",29670300.0],["2026-04", "SYAHRUL RAHMAN", "EFD", "SUMATERA UTARA", "KAB. DELI SERDANG",29565000.0],["2026-04", "SYAHRUL RAHMAN", "EFD", "SUMATERA UTARA", "KAB. DELI SERDANG",2920000.0],["2026-04", "SYAHRUL RAHMAN", "EFD", "SUMATERA UTARA", "KAB. DELI SERDANG",17155000.0],["2026-04", "AHMAD MUZAKKI", "EFD", "NUSA TENGGARA BARAT", "NUSA TENGGARA BARAT",11363650.0],["2026-04", "AHMAD MUZAKKI", "EFD", "NUSA TENGGARA BARAT", "NUSA TENGGARA BARAT",33863677.0],["2026-04", "AHMAD MUZAKKI", "EFD", "NUSA TENGGARA BARAT", "NUSA TENGGARA BARAT",34318223.0],["2026-04", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. KEBUMEN",8648648.649],["2026-04", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. KEBUMEN",13333333.33],["2026-04", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. KEBUMEN",648648.6486],["2026-04", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. MAGELANG",4324324.324],["2026-04", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. MAGELANG",0.0],["2026-04", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. MAGELANG",1441441.441],["2026-04", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. PURWOREJO",4684684.685],["2026-04", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. PURWOREJO",13693693.69],["2026-04", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. PURWOREJO",936936.9369],["2026-04", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. SUKOHARJO",7207207.207],["2026-04", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. SUKOHARJO",4684684.685],["2026-04", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. SUKOHARJO",792792.7928],["2026-04", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. SUKOHARJO",2162162.162],["2026-04", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. SUKOHARJO",3459459.459],["2026-04", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. TEMANGGUNG",1081080.0],["2026-04", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. TEMANGGUNG",15495480.0],["2026-04", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. TEMANGGUNG",288288.0],["2026-04", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. WONOGIRI",1441441.441],["2026-04", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. WONOGIRI",12252252.25],["2026-04", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. WONOGIRI",144144.1441],["2026-04", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KOTA SEMARANG",6990990.991],["2026-04", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KOTA SEMARANG",6990990.991],["2026-04", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KOTA SEMARANG",8288288.288],["2026-04", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KOTA SEMARANG",5189189.189],["2026-04", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KOTA SEMARANG",4180180.18],["2026-04", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KOTA SURAKARTA",720720.7207],["2026-04", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KOTA SURAKARTA",4684684.685],["2026-04", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. TEGAL",4324324.324],["2026-04", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. TEGAL",9009009.009],["2026-04", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. TEGAL",4324324.324],["2026-04", "SYAHRUL RAHMAN", "EFD", "SUMATERA BARAT", "SUMATERA BARAT",765489000.0],["2026-03", "YOSEP PIRDAOS", "EFD", "JAWA TIMUR", "KOTA MALANG",5945945.946],["2026-03", "YOSEP PIRDAOS", "EFD", "JAWA TIMUR", "KOTA MALANG",10752252.25],["2026-03", "YOSEP PIRDAOS", "EFD", "JAWA TIMUR", "KOTA MALANG",40270270.27],["2026-03", "AHMAD MUZAKKI", "EFD", "BANTEN", "KAB. TANGERANG",41292803.0],["2026-03", "AHMAD MUZAKKI", "EFD", "BANTEN", "KAB. TANGERANG",4409911.0],["2026-03", "AHMAD MUZAKKI", "EFD", "BANTEN", "KAB. TANGERANG",209671223.0],["2026-03", "AHMAD MUZAKKI", "EFD", "BANTEN", "KAB. TANGERANG",34479232.0],["2026-03", "SYAHRUL RAHMAN", "Smart Water Meter", "ACEH", "KAB. ACEH TENGAH",102000000.0],["2026-03", "SYAHRUL RAHMAN", "EFD", "SUMATERA BARAT", "SUMATERA BARAT",25500000.0],["2026-04", "SYAHRUL RAHMAN", "EFD", "SUMATERA BARAT", "SUMATERA BARAT",25500000.0],["2026-04", "YRZI RAFI HAKIM", "EFD", "KALIMANTAN TENGAH", "KOTA PALANGKA RAYA",0.0],["2026-04", "YRZI RAFI HAKIM", "EFD", "KALIMANTAN TENGAH", "KOTA PALANGKA RAYA",0.0],["2026-04", "YRZI RAFI HAKIM", "EFD", "KALIMANTAN TENGAH", "KOTA PALANGKA RAYA",0.0],["2026-03", "YRZI RAFI HAKIM", "EFD", "SULAWESI TENGAH", "KOTA PALU",17649000.0],["2026-03", "YRZI RAFI HAKIM", "EFD", "SULAWESI TENGAH", "KOTA PALU",27306000.0],["2026-03", "YRZI RAFI HAKIM", "EFD", "SULAWESI TENGAH", "KOTA PALU",93240000.0],["2026-04", "YRZI RAFI HAKIM", "EFD", "SULAWESI TENGAH", "KOTA PALU",18315000.0],["2026-04", "YRZI RAFI HAKIM", "EFD", "SULAWESI TENGAH", "KOTA PALU",27639000.0],["2026-04", "YRZI RAFI HAKIM", "EFD", "SULAWESI TENGAH", "KOTA PALU",95238000.0],["2026-04", "YRZI RAFI HAKIM", "EFD", "SULAWESI TENGAH", "KOTA PALU",2997000.0],["2026-04", "YRZI RAFI HAKIM", "EFD", "SULAWESI TENGAH", "KOTA PALU",5994000.0],["2026-04", "YRZI RAFI HAKIM", "EFD", "SULAWESI TENGAH", "KOTA PALU",29637000.0],["2026-04", "YOSEP PIRDAOS", "SGov Pajak", "JAWA TENGAH", "KAB. KUDUS",134950000.0],["2026-05", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. BANTUL",10763648.0],["2026-05", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. BANTUL",17827292.0],["2026-05", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. BANTUL",5045460.0],["2026-05", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. GUNUNG KIDUL",1009092.0],["2026-05", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. GUNUNG KIDUL",23545480.0],["2026-05", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. GUNUNG KIDUL",9081828.0],["2026-05", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. KULON PROGO",3363640.0],["2026-05", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. KULON PROGO",10090920.0],["2026-05", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. KULON PROGO",6727280.0],["2026-05", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. SLEMAN",16270296.0],["2026-05", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. SLEMAN",6391902.0],["2026-05", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. SLEMAN",15495520.0],["2026-05", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. SLEMAN",27918212.0],["2026-05", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. SLEMAN",18163656.0],["2026-05", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. SLEMAN",5381824.0],["2026-05", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KOTA YOGYAKARTA",23243280.0],["2026-05", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KOTA YOGYAKARTA",7941454.0],["2026-05", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KOTA YOGYAKARTA",30991040.0],["2026-05", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KOTA YOGYAKARTA",18163656.0],["2026-05", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KOTA YOGYAKARTA",10427284.0],["2026-05", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KOTA YOGYAKARTA",8072736.0],["2026-05", "YRZI RAFI HAKIM", "EFD", "SULAWESI UTARA", "SULAWESI UTARA",24190000.0],["2026-05", "YRZI RAFI HAKIM", "EFD", "SULAWESI UTARA", "SULAWESI UTARA",295000.0],["2026-05", "YRZI RAFI HAKIM", "EFD", "SULAWESI UTARA", "SULAWESI UTARA",55160000.0],["2026-05", "YRZI RAFI HAKIM", "EFD", "SULAWESI UTARA", "SULAWESI UTARA",10325000.0],["2026-05", "REZA FAHREVI", "EFD", "LAMPUNG", "KAB. LAMPUNG UTARA",11486486.49],["2026-05", "REZA FAHREVI", "EFD", "LAMPUNG", "KAB. LAMPUNG TIMUR",7657657.658],["2026-05", "REZA FAHREVI", "EFD", "LAMPUNG", "KAB. TANGGAMUS",8288288.288],["2026-05", "REZA FAHREVI", "EFD", "LAMPUNG", "KAB. TANGGAMUS",720720.7207],["2026-05", "REZA FAHREVI", "EFD", "LAMPUNG", "KOTA BANDAR LAMPUNG",11171171.17],["2026-05", "REZA FAHREVI", "EFD", "LAMPUNG", "KOTA BANDAR LAMPUNG",32792792.79],["2026-05", "REZA FAHREVI", "EFD", "LAMPUNG", "KOTA BANDAR LAMPUNG",28108108.11],["2026-05", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SINTANG",300000.0],["2026-05", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SINTANG",4800000.0],["2026-05", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SINTANG",8100000.0],["2026-05", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KOTA PONTIANAK",17700000.0],["2026-05", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KOTA PONTIANAK",1200000.0],["2026-05", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KOTA PONTIANAK",41100000.0],["2026-05", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. BENGKAYANG",18300000.0],["2026-05", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. BENGKAYANG",5700000.0],["2026-05", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SANGGAU",300000.0],["2026-05", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SANGGAU",9900000.0],["2026-05", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SANGGAU",4500000.0],["2026-05", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. LANDAK",10500000.0],["2026-05", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. LANDAK",4200000.0],["2026-05", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SAMBAS",2100000.0],["2026-05", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SAMBAS",4800000.0],["2026-05", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SEKADAU",8700000.0],["2026-05", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SEKADAU",2400000.0],["2026-05", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. KUBU RAYA",3300000.0],["2026-05", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. KUBU RAYA",900000.0],["2026-05", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. KUBU RAYA",10500000.0],["2026-05", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. MELAWI",2700000.0],["2026-05", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. MELAWI",4800000.0],["2026-05", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. KAPUAS HULU",3900000.0],["2026-05", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. KAPUAS HULU",2100000.0],["2026-05", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARBARU",2269092.0],["2026-05", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARBARU",2458183.0],["2026-05", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARBARU",8112000.0],["2026-05", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARBARU",3328000.0],["2026-05", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARBARU",11856000.0],["2026-05", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TABALONG",378182.0],["2026-05", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TABALONG",3403638.0],["2026-05", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TABALONG",945455.0],["2026-05", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TABALONG",416000.0],["2026-05", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TABALONG",3744000.0],["2026-05", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TABALONG",3744000.0],["2026-05", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BARITO KUALA",1890910.0],["2026-05", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BARITO KUALA",2496000.0],["2026-05", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BANJAR",1134546.0],["2026-05", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BANJAR",3025456.0],["2026-05", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BANJAR",567273.0],["2026-05", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BANJAR",1872000.0],["2026-05", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BANJAR",6032000.0],["2026-05", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BANJAR",5616000.0],["2026-05", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. KOTABARU",1040000.0],["2026-05", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. KOTABARU",5200000.0],["2026-05", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. KOTABARU",416000.0],["2026-05", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. KOTABARU",1360000.0],["2026-05", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TANAH LAUT",9568000.0],["2026-05", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TANAH LAUT",1040000.0],["2026-05", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. HULU SUNGAI SELATAN",5824000.0],["2026-05", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. HULU SUNGAI SELATAN",1248000.0],["2026-05", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",21849102.0],["2026-05", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",30087288.0],["2026-05", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",19700010.0],["2026-05", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",4298184.0],["2026-05", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",5551821.0],["2026-05", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",8059095.0],["2026-05", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",4656366.0],["2026-05", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",5040000.0],["2026-05", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",16834554.0],["2026-05", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",19517567.57],["2026-05", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. KOTABARU",4756756.757],["2026-05", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. HULU SUNGAI UTARA",270270.2703],["2026-05", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. HULU SUNGAI UTARA",6756756.757],["2026-05", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. HULU SUNGAI UTARA",416000.0],["2026-05", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TAPIN",540540.0],["2026-05", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TAPIN",5135130.0],["2026-05", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TAPIN",2704000.0],["2026-05", "SYAHRUL RAHMAN", "EFD", "ACEH", "KOTA LHOKSEUMAWE",2774772.0],["2026-05", "SYAHRUL RAHMAN", "EFD", "ACEH", "KOTA LHOKSEUMAWE",11495484.0],["2026-05", "SYAHRUL RAHMAN", "EFD", "ACEH", "KOTA LHOKSEUMAWE",792792.0],["2026-05", "AHMAD MUZAKKI", "EFD", "MALUKU", "KOTA AMBON",8541450.0],["2026-05", "AHMAD MUZAKKI", "EFD", "MALUKU", "KOTA AMBON",73276650.0],["2026-05", "AHMAD MUZAKKI", "EFD", "MALUKU", "KOTA AMBON",30569400.0],["2026-05", "SYAHRUL RAHMAN", "EFD", "SUMATERA UTARA", "KAB. DELI SERDANG",29565000.0],["2026-05", "SYAHRUL RAHMAN", "EFD", "SUMATERA UTARA", "KAB. DELI SERDANG",2920000.0],["2026-05", "SYAHRUL RAHMAN", "EFD", "SUMATERA UTARA", "KAB. DELI SERDANG",17520000.0],["2026-05", "AHMAD MUZAKKI", "EFD", "NUSA TENGGARA BARAT", "NUSA TENGGARA BARAT",11136377.0],["2026-05", "AHMAD MUZAKKI", "EFD", "NUSA TENGGARA BARAT", "NUSA TENGGARA BARAT",33636404.0],["2026-05", "AHMAD MUZAKKI", "EFD", "NUSA TENGGARA BARAT", "NUSA TENGGARA BARAT",34772769.0],["2026-05", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. KEBUMEN",8648648.649],["2026-05", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. KEBUMEN",13333333.33],["2026-05", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. KEBUMEN",648648.6486],["2026-05", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. MAGELANG",4324324.324],["2026-05", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. MAGELANG",0.0],["2026-05", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. MAGELANG",1441441.441],["2026-05", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. PURWOREJO",5045045.045],["2026-05", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. PURWOREJO",12252252.25],["2026-05", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. PURWOREJO",936936.9369],["2026-05", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. SUKOHARJO",6486486.486],["2026-05", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. SUKOHARJO",3243243.243],["2026-05", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. SUKOHARJO",792792.7928],["2026-05", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. SUKOHARJO",2162162.162],["2026-05", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. SUKOHARJO",3099099.099],["2026-05", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. TEMANGGUNG",1081080.0],["2026-05", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. TEMANGGUNG",15135120.0],["2026-05", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. TEMANGGUNG",288288.0],["2026-05", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. WONOGIRI",1441441.441],["2026-05", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. WONOGIRI",12252252.25],["2026-05", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. WONOGIRI",144144.1441],["2026-05", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KOTA SEMARANG",6918918.919],["2026-05", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KOTA SEMARANG",6846846.847],["2026-05", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KOTA SEMARANG",8288288.288],["2026-05", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KOTA SEMARANG",5045045.045],["2026-05", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KOTA SEMARANG",4828828.829],["2026-05", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KOTA SURAKARTA",720720.7207],["2026-05", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KOTA SURAKARTA",4684684.685],["2026-05", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. TEGAL",4324324.324],["2026-05", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. TEGAL",9009009.009],["2026-05", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. TEGAL",4684684.685],["2026-05", "YOSEP PIRDAOS", "EFD", "JAWA TIMUR", "KOTA MALANG",5675675.676],["2026-05", "YOSEP PIRDAOS", "EFD", "JAWA TIMUR", "KOTA MALANG",11445945.95],["2026-05", "YOSEP PIRDAOS", "EFD", "JAWA TIMUR", "KOTA MALANG",40000000.0],["2026-04", "AHMAD MUZAKKI", "EFD", "BANTEN", "KAB. TANGERANG",39689199.0],["2026-04", "AHMAD MUZAKKI", "EFD", "BANTEN", "KAB. TANGERANG",4409911.0],["2026-04", "AHMAD MUZAKKI", "EFD", "BANTEN", "KAB. TANGERANG",211274827.0],["2026-04", "AHMAD MUZAKKI", "EFD", "BANTEN", "KAB. TANGERANG",34479232.0],["2026-05", "YOSEP PIRDAOS", "EFD", "JAWA TIMUR", "KAB. JOMBANG",608108.1081],["2026-05", "YOSEP PIRDAOS", "EFD", "JAWA TIMUR", "KAB. JOMBANG",25743243.24],["2026-05", "YOSEP PIRDAOS", "EFD", "JAWA TIMUR", "KAB. JOMBANG",13986486.49],["2026-04", "SYAHRUL RAHMAN", "CGov Pajak", "SUMATERA BARAT", "KAB. PASAMAN BARAT",45045045.05],["2026-05", "SYAHRUL RAHMAN", "EFD", "SUMATERA BARAT", "SUMATERA BARAT",380475000.0],["2026-05", "SYAHRUL RAHMAN", "EFD", "SUMATERA BARAT", "SUMATERA BARAT",25500000.0],["2026-05", "AHMAD MUZAKKI", "CGov Pajak", "RIAU", "KOTA DUMAI",95640000.0],["2026-05", "AHMAD MUZAKKI", "SGov Pajak", "RIAU", "KOTA DUMAI",81070000.0],["2026-05", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. MEMPAWAH",23400000.0],["2026-05", "AHMAD MUZAKKI", "EFD", "NUSA TENGGARA BARAT", "KAB. LOMBOK BARAT",75070270.27],["2026-05", "YRZI RAFI HAKIM", "EFD", "SULAWESI TENGAH", "KOTA PALU",18315000.0],["2026-05", "YRZI RAFI HAKIM", "EFD", "SULAWESI TENGAH", "KOTA PALU",28971000.0],["2026-05", "YRZI RAFI HAKIM", "EFD", "SULAWESI TENGAH", "KOTA PALU",97569000.0],["2026-04", "REZA FAHREVI", "SGov Pajak", "BALI", "KAB. BULELENG",7432000.0],["2026-05", "SYAHRUL RAHMAN", "GCloud", "BENGKULU", "KAB. LEBONG",112612612.6],["2026-05", "SYAHRUL RAHMAN", "Smart Water Meter", "ACEH", "KAB. ACEH TENGAH",163800000.0],["2026-05", "SYAHRUL RAHMAN", "SGov Pajak", "ACEH", "KAB. ACEH TENGAH",136900000.0],["2026-05", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. BANTUL",128828828.8],["2026-05", "YRZI RAFI HAKIM", "EFD", "KALIMANTAN TENGAH", "KOTA PALANGKA RAYA",14400000.0],["2026-05", "YRZI RAFI HAKIM", "EFD", "KALIMANTAN TENGAH", "KOTA PALANGKA RAYA",1800000.0],["2026-05", "YRZI RAFI HAKIM", "EFD", "KALIMANTAN TENGAH", "KOTA PALANGKA RAYA",18000000.0],["2026-06", "REZA FAHREVI", "SGov Pajak", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",89900000.0],["2026-06", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. BANTUL",10763648.0],["2026-06", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. BANTUL",17827292.0],["2026-06", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. BANTUL",5045460.0],["2026-06", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. GUNUNG KIDUL",1009092.0],["2026-06", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. GUNUNG KIDUL",23881844.0],["2026-06", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. GUNUNG KIDUL",8745464.0],["2026-06", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. KULON PROGO",3363640.0],["2026-06", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. KULON PROGO",10090920.0],["2026-06", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. KULON PROGO",6727280.0],["2026-06", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. SLEMAN",16270296.0],["2026-06", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. SLEMAN",6391902.0],["2026-06", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. SLEMAN",15495520.0],["2026-06", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. SLEMAN",27918212.0],["2026-06", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. SLEMAN",18163656.0],["2026-06", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KAB. SLEMAN",5381824.0],["2026-06", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KOTA YOGYAKARTA",23243280.0],["2026-06", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KOTA YOGYAKARTA",7554066.0],["2026-06", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KOTA YOGYAKARTA",31378428.0],["2026-06", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KOTA YOGYAKARTA",18163656.0],["2026-06", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KOTA YOGYAKARTA",10427284.0],["2026-06", "YOSEP PIRDAOS", "EFD", "YOGYAKARTA", "KOTA YOGYAKARTA",8072736.0],["2026-06", "YRZI RAFI HAKIM", "EFD", "SULAWESI UTARA", "SULAWESI UTARA",24190000.0],["2026-06", "YRZI RAFI HAKIM", "EFD", "SULAWESI UTARA", "SULAWESI UTARA",295000.0],["2026-06", "YRZI RAFI HAKIM", "EFD", "SULAWESI UTARA", "SULAWESI UTARA",55160000.0],["2026-06", "YRZI RAFI HAKIM", "EFD", "SULAWESI UTARA", "SULAWESI UTARA",10325000.0],["2026-06", "REZA FAHREVI", "EFD", "LAMPUNG", "KAB. LAMPUNG UTARA",11486486.49],["2026-06", "REZA FAHREVI", "EFD", "LAMPUNG", "KAB. LAMPUNG TIMUR",7657657.658],["2026-06", "REZA FAHREVI", "EFD", "LAMPUNG", "KAB. TANGGAMUS",8288288.288],["2026-06", "REZA FAHREVI", "EFD", "LAMPUNG", "KAB. TANGGAMUS",720720.7207],["2026-06", "REZA FAHREVI", "EFD", "LAMPUNG", "KOTA BANDAR LAMPUNG",11171171.17],["2026-06", "REZA FAHREVI", "EFD", "LAMPUNG", "KOTA BANDAR LAMPUNG",32792792.79],["2026-06", "REZA FAHREVI", "EFD", "LAMPUNG", "KOTA BANDAR LAMPUNG",28108108.11],["2026-06", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. BENGKAYANG",18600000.0],["2026-06", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. BENGKAYANG",6000000.0],["2026-06", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. KAPUAS HULU",3900000.0],["2026-06", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. KAPUAS HULU",2100000.0],["2026-06", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. KUBU RAYA",3300000.0],["2026-06", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. KUBU RAYA",900000.0],["2026-06", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. KUBU RAYA",10500000.0],["2026-06", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. LANDAK",10500000.0],["2026-06", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. LANDAK",4200000.0],["2026-06", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. MELAWI",2700000.0],["2026-06", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. MELAWI",4800000.0],["2026-06", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SAMBAS",2100000.0],["2026-06", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SAMBAS",6300000.0],["2026-06", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SANGGAU",300000.0],["2026-06", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SANGGAU",9900000.0],["2026-06", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SANGGAU",4500000.0],["2026-06", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SEKADAU",8700000.0],["2026-06", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SEKADAU",2400000.0],["2026-06", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SINTANG",300000.0],["2026-06", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SINTANG",4800000.0],["2026-06", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KAB. SINTANG",8700000.0],["2026-06", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KOTA PONTIANAK",17700000.0],["2026-06", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KOTA PONTIANAK",1200000.0],["2026-06", "DITO WIRAWAN", "EFD", "KALIMANTAN BARAT", "KOTA PONTIANAK",41100000.0],["2026-06", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARBARU",2269092.0],["2026-06", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARBARU",2458183.0],["2026-06", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARBARU",8112000.0],["2026-06", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARBARU",3120000.0],["2026-06", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARBARU",11648000.0],["2026-06", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TABALONG",378182.0],["2026-06", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TABALONG",3403638.0],["2026-06", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TABALONG",945455.0],["2026-06", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TABALONG",416000.0],["2026-06", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TABALONG",3744000.0],["2026-06", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TABALONG",3744000.0],["2026-06", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BARITO KUALA",1890910.0],["2026-06", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BARITO KUALA",2496000.0],["2026-06", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BANJAR",1134546.0],["2026-06", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BANJAR",3025456.0],["2026-06", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BANJAR",567273.0],["2026-06", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BANJAR",1872000.0],["2026-06", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BANJAR",6032000.0],["2026-06", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. BANJAR",5616000.0],["2026-06", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. KOTABARU",1040000.0],["2026-06", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. KOTABARU",5200000.0],["2026-06", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. KOTABARU",416000.0],["2026-06", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. KOTABARU",1360000.0],["2026-06", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TANAH LAUT",9568000.0],["2026-06", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TANAH LAUT",1040000.0],["2026-06", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. HULU SUNGAI SELATAN",5824000.0],["2026-06", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. HULU SUNGAI SELATAN",1248000.0],["2026-06", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",21849102.0],["2026-06", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",30087288.0],["2026-06", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",19700010.0],["2026-06", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",4298184.0],["2026-06", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",5551821.0],["2026-06", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",8059095.0],["2026-06", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",4656366.0],["2026-06", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",5250000.0],["2026-06", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",16655463.0],["2026-06", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KOTA BANJARMASIN",19567612.61],["2026-06", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. KOTABARU",4756756.757],["2026-06", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. HULU SUNGAI UTARA",270270.2703],["2026-06", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. HULU SUNGAI UTARA",22162162.16],["2026-06", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. HULU SUNGAI UTARA",624000.0],["2026-06", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TAPIN",540540.0],["2026-06", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TAPIN",5135130.0],["2026-06", "REZA FAHREVI", "EFD", "KALIMANTAN SELATAN", "KAB. TAPIN",2704000.0],["2026-06", "SYAHRUL RAHMAN", "EFD", "ACEH", "KOTA LHOKSEUMAWE",2774772.0],["2026-06", "SYAHRUL RAHMAN", "EFD", "ACEH", "KOTA LHOKSEUMAWE",11495484.0],["2026-06", "SYAHRUL RAHMAN", "EFD", "ACEH", "KOTA LHOKSEUMAWE",792792.0],["2026-06", "AHMAD MUZAKKI", "EFD", "MALUKU", "KOTA AMBON",8091900.0],["2026-06", "AHMAD MUZAKKI", "EFD", "MALUKU", "KOTA AMBON",71928000.0],["2026-06", "AHMAD MUZAKKI", "EFD", "MALUKU", "KOTA AMBON",31918050.0],["2026-06", "SYAHRUL RAHMAN", "EFD", "SUMATERA UTARA", "KAB. DELI SERDANG",29565000.0],["2026-06", "SYAHRUL RAHMAN", "EFD", "SUMATERA UTARA", "KAB. DELI SERDANG",2920000.0],["2026-06", "SYAHRUL RAHMAN", "EFD", "SUMATERA UTARA", "KAB. DELI SERDANG",17520000.0],["2026-06", "AHMAD MUZAKKI", "EFD", "NUSA TENGGARA BARAT", "NUSA TENGGARA BARAT",11136377.0],["2026-06", "AHMAD MUZAKKI", "EFD", "NUSA TENGGARA BARAT", "NUSA TENGGARA BARAT",33636404.0],["2026-06", "AHMAD MUZAKKI", "EFD", "NUSA TENGGARA BARAT", "NUSA TENGGARA BARAT",34772769.0],["2026-06", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. KEBUMEN",8648648.649],["2026-06", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. KEBUMEN",13333333.33],["2026-06", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. KEBUMEN",648648.6486],["2026-06", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. MAGELANG",4324324.324],["2026-06", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. MAGELANG",360360.3604],["2026-06", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. MAGELANG",1585585.586],["2026-06", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. PURWOREJO",5045045.045],["2026-06", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. PURWOREJO",12612612.61],["2026-06", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. PURWOREJO",1009009.009],["2026-06", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. SUKOHARJO",6846846.847],["2026-06", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. SUKOHARJO",3243243.243],["2026-06", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. SUKOHARJO",792792.7928],["2026-06", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. SUKOHARJO",2162162.162],["2026-06", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. SUKOHARJO",3099099.099],["2026-06", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. TEGAL",4324324.324],["2026-06", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. TEGAL",9009009.009],["2026-06", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. TEGAL",5045045.045],["2026-06", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. TEMANGGUNG",1081080.0],["2026-06", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. TEMANGGUNG",15135120.0],["2026-06", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. TEMANGGUNG",288288.0],["2026-06", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. WONOGIRI",1441441.441],["2026-06", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. WONOGIRI",12252252.25],["2026-06", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KAB. WONOGIRI",144144.1441],["2026-06", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KOTA SEMARANG",7063063.063],["2026-06", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KOTA SEMARANG",6846846.847],["2026-06", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KOTA SEMARANG",8288288.288],["2026-06", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KOTA SEMARANG",5117117.117],["2026-06", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KOTA SEMARANG",720720.7207],["2026-06", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KOTA SEMARANG",6558558.559],["2026-06", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KOTA SURAKARTA",720720.7207],["2026-06", "YOSEP PIRDAOS", "EFD", "JAWA TENGAH", "KOTA SURAKARTA",4324324.324],["2026-06", "YOSEP PIRDAOS", "EFD", "JAWA TIMUR", "KOTA MALANG",6216216.216],["2026-06", "YOSEP PIRDAOS", "EFD", "JAWA TIMUR", "KOTA MALANG",11099099.1],["2026-06", "YOSEP PIRDAOS", "EFD", "JAWA TIMUR", "KOTA MALANG",38918918.92],["2026-06", "YOSEP PIRDAOS", "EFD", "JAWA TIMUR", "KAB. JOMBANG",608108.1081],["2026-06", "YOSEP PIRDAOS", "EFD", "JAWA TIMUR", "KAB. JOMBANG",25743243.24],["2026-06", "YOSEP PIRDAOS", "EFD", "JAWA TIMUR", "KAB. JOMBANG",13986486.49],["2026-06", "AHMAD MUZAKKI", "EFD", "BANTEN", "KAB. TANGERANG",41693704.0],["2026-06", "AHMAD MUZAKKI", "EFD", "BANTEN", "KAB. TANGERANG",4409911.0],["2026-06", "AHMAD MUZAKKI", "EFD", "BANTEN", "KAB. TANGERANG",209270322.0],["2026-06", "AHMAD MUZAKKI", "EFD", "BANTEN", "KAB. TANGERANG",34479232.0],["2026-06", "YRZI RAFI HAKIM", "EFD", "SULAWESI TENGAH", "KOTA PALU",17982000.0],["2026-06", "YRZI RAFI HAKIM", "EFD", "SULAWESI TENGAH", "KOTA PALU",30969000.0],["2026-06", "YRZI RAFI HAKIM", "EFD", "SULAWESI TENGAH", "KOTA PALU",117216000.0],["2026-06", "YRZI RAFI HAKIM", "EFD", "KALIMANTAN TENGAH", "KOTA PALANGKA RAYA",16200000.0],["2026-06", "YRZI RAFI HAKIM", "EFD", "KALIMANTAN TENGAH", "KOTA PALANGKA RAYA",5850000.0],["2026-06", "YRZI RAFI HAKIM", "EFD", "KALIMANTAN TENGAH", "KOTA PALANGKA RAYA",16650000.0],["2026-05", "REZA FAHREVI", "SGov Pajak", "BALI", "KAB. KLUNGKUNG",157500000.0],["2026-06", "YRZI RAFI HAKIM", "GCloud", "SULAWESI TENGAH", "KAB. PARIGI MOUTONG",45000000.0],["2026-06", "YOSEP PIRDAOS", "SGov Pajak", "JAWA BARAT", "KAB. SUKABUMI",64440000.0],["2026-06", "SYAHRUL RAHMAN", "SGov Pajak", "ACEH", "KAB. ACEH BESAR",112500000.0],["2026-06", "SYAHRUL RAHMAN", "CGov Pajak", "SUMATERA BARAT", "KAB. TANAH DATAR",29880000.0],["2026-06", "AHMAD MUZAKKI", "SGov Pajak", "BANTEN", "KAB. TANGERANG",85035000.0],["2026-06", "REZA FAHREVI", "EFD", "BALI", "KOTA DENPASAR",181619200.0],["2026-06", "SYAHRUL RAHMAN", "SGov Pajak", "ACEH", "KAB. SIMEULUE",243243243.2],["2026-05", "REZA FAHREVI", "SGov Pajak", "KALIMANTAN SELATAN", "KAB. BANJAR",76500000.0],["2026-06", "DITO WIRAWAN", "GCloud", "KALIMANTAN TIMUR", "KAB. MAHAKAM ULU",45000000.0],["2026-06", "SYAHRUL RAHMAN", "EFD", "SUMATERA BARAT", "SUMATERA BARAT",25500000.0],["2026-06", "AHMAD MUZAKKI", "EFD", "BANTEN", "KAB. TANGERANG",41693704.0],["2026-06", "AHMAD MUZAKKI", "EFD", "BANTEN", "KAB. TANGERANG",4409911.0],["2026-06", "AHMAD MUZAKKI", "EFD", "BANTEN", "KAB. TANGERANG",209270322.0],["2026-06", "AHMAD MUZAKKI", "EFD", "BANTEN", "KAB. TANGERANG",34479232.0],["2026-06", "SYAHRUL RAHMAN", "CGov Pajak", "ACEH", "KAB. PIDIE",58550000.0],["2026-06", "DITO WIRAWAN", "EFD", "KALIMANTAN TIMUR", "KOTA BALIKPAPAN",103189189.2],["2026-06", "DITO WIRAWAN", "EFD", "KALIMANTAN TIMUR", "KOTA BALIKPAPAN",103189189.2],["2026-06", "DITO WIRAWAN", "EFD", "KALIMANTAN TIMUR", "KOTA BALIKPAPAN",103189189.2],["2026-06", "DITO WIRAWAN", "EFD", "KALIMANTAN TIMUR", "KOTA BALIKPAPAN",103189189.2],["2026-06", "DITO WIRAWAN", "EFD", "KALIMANTAN TIMUR", "KOTA BALIKPAPAN",103189189.2],["2026-06", "DITO WIRAWAN", "EFD", "KALIMANTAN TIMUR", "KOTA BALIKPAPAN",103189189.2]];
+
 
 const MONTH_LABEL = {
   '2026-01':'Jan','2026-02':'Feb','2026-03':'Mar',
@@ -314,6 +361,7 @@ const rpShort = n => {
   if (n >= 1e6) return "Rp " + (n/1e6).toFixed(1).replace(".",",") + " jt";
   return rp(n);
 };
+const pct = (n, total) => total ? ((n / total) * 100).toFixed(1).replace(".",",") + "%" : "0%";
 
 const months = [...new Set(ROWS.map(r => r[0]))].sort();
 const pics = [...new Set(ROWS.map(r => r[1]))].sort((a,b)=>a.localeCompare(b,'id'));
@@ -328,6 +376,8 @@ fPic.innerHTML = '<option value="">Semua PIC</option>' +
   pics.map(p => `<option value="${p.replace(/"/g,'&quot;')}">${p}</option>`).join('');
 fProduct.innerHTML = '<option value="">Semua Product</option>' +
   products.map(p => `<option value="${p.replace(/"/g,'&quot;')}">${p}</option>`).join('');
+
+let selectedProv = null;
 
 function filtered() {
   const m = fPeriod.value;
@@ -345,9 +395,10 @@ function agg(rows, keyIdx) {
   return [...map.entries()].sort((a,b)=>b[1]-a[1]);
 }
 
-function aggKab(rows) {
+function aggKab(rows, provFilter) {
   const map = new Map();
   for (const r of rows) {
+    if (provFilter && r[3] !== provFilter) continue;
     const k = r[3] + '||' + r[4];
     map.set(k, (map.get(k) || 0) + r[5]);
   }
@@ -387,58 +438,94 @@ function render() {
   const total = rows.reduce((s,r)=>s+r[5],0);
   const picAgg = agg(rows, 1);
   const prodAgg = agg(rows, 2);
-  const monthAgg = [...months].map(m => {
-    if (fPeriod.value && fPeriod.value !== m) return [m, 0];
-    const sum = rows.filter(r => r[0]===m).reduce((s,r)=>s+r[5],0);
-    return [m, sum];
-  }).filter(x => !fPeriod.value || x[0]===fPeriod.value || x[1]>0);
-  // always show all months in scope when no period filter; if period selected show only that month with value
   const monthSeries = fPeriod.value
     ? months.map(m => [m, m===fPeriod.value ? total : 0])
     : months.map(m => [m, rows.filter(r=>r[0]===m).reduce((s,r)=>s+r[5],0)]);
   const provAgg = agg(rows, 3);
-  const kabAgg = aggKab(rows);
+  const kabAgg = aggKab(rows, selectedProv);
 
-  document.getElementById('kpiRevenue').textContent = Math.round(total).toLocaleString('id-ID');
+  document.getElementById('kpiRevenue').textContent = rp(total);
   document.getElementById('kpiInvoice').textContent = rows.length.toLocaleString('id-ID');
   document.getElementById('kpiPic').textContent = new Set(rows.map(r=>r[1])).size;
   document.getElementById('kpiProduct').textContent = new Set(rows.map(r=>r[2])).size;
   document.getElementById('kpiProvince').textContent = new Set(rows.map(r=>r[3])).size;
+
+  const topPic = picAgg[0];
+  const topProd = prodAgg[0];
+  const topProv = provAgg[0];
+  document.getElementById('kpiInvoiceShare').innerHTML = topPic ? `Top PIC <b>${topPic[0]}</b>` : '';
+  document.getElementById('kpiPicShare').innerHTML = topPic ? `<b>${pct(topPic[1], total)}</b> dari total` : '';
+  document.getElementById('kpiProductShare').innerHTML = topProd ? `Dominan <b>${topProd[0]}</b>` : '';
+  document.getElementById('kpiProvinceShare').innerHTML = topProv ? `Tertinggi <b>${topProv[0]}</b>` : '';
 
   const pLabel = fPeriod.value ? (MONTH_LABEL[fPeriod.value] || fPeriod.value) + ' 2026' : 'Semua periode';
   const picLabel = fPic.value || 'Semua PIC';
   const prodLabel = fProduct.value || 'Semua Product';
   document.getElementById('filterLabel').textContent = pLabel + ' · ' + picLabel + ' · ' + prodLabel;
 
-  const maxPic = Math.max(1, ...picAgg.map(x=>x[1]));
+  document.getElementById('insightKpi').innerHTML = topPic && topProd
+    ? `Dalam filter ini, <b>${topPic[0]}</b> menyumbang <b>${pct(topPic[1], total)}</b> revenue, didukung product <b>${topProd[0]}</b> (<b>${pct(topProd[1], total)}</b>).`
+    : 'Tidak ada data untuk filter ini.';
+
+  const monthLive = monthSeries.filter(x => x[1] > 0);
+  const bestMonth = monthLive.length ? monthLive.reduce((a,b)=>a[1]>=b[1]?a:b) : null;
+  document.getElementById('insightMonth').innerHTML = bestMonth
+    ? `Puncak di <b>${MONTH_LABEL[bestMonth[0]] || bestMonth[0]} 2026</b> sebesar <b>${rp(bestMonth[1])}</b>${monthLive.length>1 ? ' — bandingkan dengan bulan lain di chart.' : '.'}`
+    : 'Belum ada tren bulanan untuk filter ini.';
+
+  document.getElementById('insightBreak').innerHTML = topProd && topPic
+    ? `<b>${topProd[0]}</b> memimpin product; di sisi PIC, <b>${topPic[0]}</b> tertinggi. Scroll tabel untuk ranking lengkap.`
+    : 'Tidak ada breakdown untuk filter ini.';
+
+  const topKab = kabAgg[0];
+  document.getElementById('insightRegion').innerHTML = selectedProv
+    ? `Fokus province <b>${selectedProv}</b>${topKab ? ` — kabupaten teratas <b>${topKab[1]}</b> (<b>${rp(topKab[2])}</b>).` : '.'}`
+    : (topProv
+      ? `Province teratas <b>${topProv[0]}</b> (<b>${pct(topProv[1], total)}</b>)${topKab ? `; kabupaten #1 <b>${topKab[1]}</b>.` : '.'} Klik province untuk drill-down.`
+      : 'Tidak ada data wilayah.');
+
+  document.getElementById('btnClearProv').hidden = !selectedProv;
+
+  const maxPic = Math.max(1, ...picAgg.map(x=>x[1]), 1);
   document.getElementById('picBody').innerHTML = picAgg.map((r,i) => `
     <tr>
       <td class="rank" data-label="">${i+1}</td>
       <td data-label="PIC Name">${r[0]}<div class="bar"><i style="width:${(r[1]/maxPic*100).toFixed(1)}%"></i></div></td>
+      <td class="share" data-label="Share">${pct(r[1], total)}</td>
       <td class="num" data-label="Revenue">${rp(r[1])}</td>
-    </tr>`).join('') || '<tr><td colspan="3">Tidak ada data untuk filter ini.</td></tr>';
+    </tr>`).join('') || '<tr><td colspan="4">Tidak ada data untuk filter ini.</td></tr>';
 
-  const maxProd = Math.max(1, ...prodAgg.map(x=>x[1]));
+  const maxProd = Math.max(1, ...prodAgg.map(x=>x[1]), 1);
   document.getElementById('productBody').innerHTML = prodAgg.map((r,i) => `
     <tr>
       <td class="rank" data-label="">${i+1}</td>
       <td data-label="Product">${r[0]}<div class="bar"><i style="width:${(r[1]/maxProd*100).toFixed(1)}%"></i></div></td>
+      <td class="share" data-label="Share">${pct(r[1], total)}</td>
       <td class="num" data-label="Revenue">${rp(r[1])}</td>
-    </tr>`).join('') || '<tr><td colspan="3">Tidak ada data untuk filter ini.</td></tr>';
+    </tr>`).join('') || '<tr><td colspan="4">Tidak ada data untuk filter ini.</td></tr>';
 
   charts.month.data.labels = monthSeries.map(x => MONTH_LABEL[x[0]] || x[0]);
   charts.month.data.datasets[0].data = monthSeries.map(x=>x[1]);
   charts.month.update();
 
-  const maxProv = Math.max(1, ...provAgg.map(x=>x[1]));
+  const maxProv = Math.max(1, ...provAgg.map(x=>x[1]), 1);
   document.getElementById('provBody').innerHTML = provAgg.map((r,i) => `
-    <tr>
+    <tr class="prov-row${selectedProv===r[0]?' active':''}" data-prov="${String(r[0]).replace(/"/g,'&quot;')}">
       <td class="rank" data-label="">${i+1}</td>
       <td data-label="Province">${r[0]}<div class="bar"><i style="width:${(r[1]/maxProv*100).toFixed(1)}%"></i></div></td>
+      <td class="share" data-label="Share">${pct(r[1], total)}</td>
       <td class="num" data-label="Revenue">${rp(r[1])}</td>
-    </tr>`).join('') || '<tr><td colspan="3">Tidak ada data untuk filter ini.</td></tr>';
+    </tr>`).join('') || '<tr><td colspan="4">Tidak ada data untuk filter ini.</td></tr>';
 
-  const maxKab = Math.max(1, ...kabAgg.map(x=>x[2]));
+  document.querySelectorAll('.prov-row').forEach(tr => {
+    tr.addEventListener('click', () => {
+      const p = tr.getAttribute('data-prov');
+      selectedProv = selectedProv === p ? null : p;
+      render();
+    });
+  });
+
+  const maxKab = Math.max(1, ...kabAgg.map(x=>x[2]), 1);
   document.getElementById('kabBody').innerHTML = kabAgg.map((r,i) => `
     <tr>
       <td class="rank" data-label="">${i+1}</td>
@@ -448,13 +535,18 @@ function render() {
     </tr>`).join('') || '<tr><td colspan="4">Tidak ada data untuk filter ini.</td></tr>';
 }
 
-fPeriod.addEventListener('change', render);
-fPic.addEventListener('change', render);
-fProduct.addEventListener('change', render);
+fPeriod.addEventListener('change', () => { selectedProv = null; render(); });
+fPic.addEventListener('change', () => { selectedProv = null; render(); });
+fProduct.addEventListener('change', () => { selectedProv = null; render(); });
 document.getElementById('btnReset').addEventListener('click', () => {
   fPeriod.value = '';
   fPic.value = '';
   fProduct.value = '';
+  selectedProv = null;
+  render();
+});
+document.getElementById('btnClearProv').addEventListener('click', () => {
+  selectedProv = null;
   render();
 });
 
